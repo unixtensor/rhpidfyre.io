@@ -1,0 +1,36 @@
+---
+import MetaTags from "../components/meta.astro"
+
+interface Props {
+	title: string;
+	description: string;
+}
+const {title, description} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<MetaTags description={description}/>
+		<link rel="icon" type="image/png" href="/public/favicon.png"/>
+		<title>{`rhpidfyre.io | ${title}`}</title>
+	</head>
+	<body>
+		<slot/>
+	</body>
+</html>
+
+<style lang="scss" is:global>
+	@forward "../scss/root.scss";
+
+	html {
+        color-scheme: light dark;
+    }
+    body {
+    	background-color: var(--main-background-color);
+        box-sizing: border-box;
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+    }
+</style>
