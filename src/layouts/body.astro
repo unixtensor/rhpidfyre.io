@@ -1,0 +1,48 @@
+---
+import MetaTags from "../components/body/meta.astro"
+
+interface Props {
+	title: string;
+	description: string;
+}
+const {title, description} = Astro.props
+
+export type PropsStruct = Props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<MetaTags description={description}/>
+		<link rel="icon" type="image/png" href="/public/favicon.png"/>
+		<title>{`rhpidfyre.io | ${title}`}</title>
+	</head>
+	<body>
+		<slot/>
+	</body>
+</html>
+
+<style lang="scss" is:global>
+	@forward "../scss/variables.scss";
+
+	::selection {
+		background-color: var(--selection-background-color);
+		color: var(--selection-color);
+
+		@media (prefers-color-scheme: dark) {
+			background-color: var(--selection-background-color);
+			color: var(--selection-color);
+		}
+	}
+	html {
+        color-scheme: light dark;
+    }
+    body {
+    	font-family: -apple-system, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla";
+    	background-color: var(--color-primary);
+        box-sizing: border-box;
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0;
+    }
+</style>
