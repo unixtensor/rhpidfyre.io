@@ -1,11 +1,17 @@
 ---
-import WebPage from '../components/webpage.astro';
+import Page from '../layouts/page.astro';
 ---
 
-<WebPage title="Home" description="rhpidfyre.io Home Page">
+<Page title="Home" meta_description="rhpidfyre.io Home Page", disable_overflow="x">
+    <main>
 
-</WebPage>
+    </main>
+</Page>
 
 <style lang="scss">
+	@use "../scss/pages/main.scss";
 
+	main {
+		@include main.width-height;
+	}
 </style>

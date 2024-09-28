@@ -1,11 +1,11 @@
 ---
 interface Props {
-	description: string
+	meta_description: string
 }
-const {description} = Astro.props
+const {meta_description} = Astro.props
 ---
 
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width"/>
-<meta name="description" content={description}/>
+<meta name="description" content={meta_description}/>
 <meta name="generator" content={Astro.generator}/>

@@ -2,21 +2,24 @@
 
 ---
 
-<nav class="topbar">
-	<a href="../pages">
-		<img src="/logo128.png" alt="" loading="lazy" width="35px">
-	</a>
-</nav>
+<header>
+	<nav>
+		<a href="../pages">
+			<img src="/logo128.png" alt="" loading="lazy" width="35px">
+		</a>
+	</nav>
+</header>
+
 
 <style lang="scss">
-	$topbar-height: 50px;
+	@use "../scss/variables.scss";
 
-	.topbar {
+	nav {
 		display: flex;
 		align-items: center;
 		background-color: var(--color-secondary);
 		border-bottom: 1px solid var(--color-primary-border);
 		width: 100vw;
-		height: $topbar-height
+		height: variables.$topbar-height;
 	}
 </style>

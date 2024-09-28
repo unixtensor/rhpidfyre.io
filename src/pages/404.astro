@@ -1,0 +1,39 @@
+---
+import Page from '../layouts/page.astro';
+---
+
+<Page title="404" meta_description="rhpidfyre.io 404", disable_overflow="xy">
+	<main>
+		<div class="center-404">
+			<h1>404</h1>
+			<h2>Page not found</h2>
+		</div>
+	</main>
+</Page>
+
+<style lang="scss">
+	@use "../scss/variables.scss";
+	@use "../scss/pages/main.scss";
+
+	main {
+		@include main.width-height;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	h1, h2 {
+		text-align: center
+	}
+	h1 {
+		font-size: 5em;
+	}
+	h2 {
+		font-size: 2em;
+		margin-top: 0;
+	}
+	.center-404 {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

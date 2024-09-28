@@ -1,10 +1,15 @@
+$topbar-height: 50px;
+$bottombar-height: 38px;
+$main-height: 100vh;
+
+$main-subtraction: $topbar-height + $bottombar-height;
+
 @mixin light-theme {
 	--color-primary: #1d2328;
 	--color-primary-border: #3b444c;
 	--color-secondary: #171a1e;
 	--color-tertiary: #171a1e;
-	--selection-background-color: rgb();
-	--selection-color: rgb();
+	--a-link-color: black;
 }
 
 @mixin dark-theme {
@@ -12,13 +17,11 @@
 	--color-primary-border: #3b444c;
 	--color-secondary: #171a1e;
 	--color-tertiary: #171a1e;
-	--selection-background-color: rgb();
-	--selection-color: rgb();
+	--a-link-color: white;
 }
 
 :root {
 	@include light-theme;
-
 	@media (prefers-color-scheme: dark) {
 		@include dark-theme;
 	}

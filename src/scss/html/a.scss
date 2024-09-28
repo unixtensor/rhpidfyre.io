@@ -1,0 +1,7 @@
+a {
+	&:visited, &:active, &:link {
+		color: var(--a-link-color);
+   	};
+	color: var(--a-link-color);
+	text-decoration: none;
+}
