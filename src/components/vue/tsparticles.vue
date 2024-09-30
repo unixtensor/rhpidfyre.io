@@ -5,14 +5,13 @@
 
 	createApp({}).use(Particles, {
 		init: async engine => {
-			// await loadFull(engine); // you can load the full tsParticles library from "tsparticles" if you need it
-			await loadSlim(engine); // or you can load the slim version from "@tsparticles/slim" if don't need Shapes or Animations
+			await loadSlim(engine);
 		},
 	});
 </script>
 
 <template>
-	<div id="app">
+	<div id="vue-app-tsparticles">
 		<vue-particles
             id="tsparticles"
             @particles-loaded="particlesLoaded"
@@ -91,6 +90,12 @@
 	</div>
 </template>
 
-<style lang="scss" scoped>
-
+<style scoped>
+	#vue-app-tsparticles {
+		user-select: none;
+		pointer-events: none;
+		width: inherit;
+		height: inherit;
+		position: absolute;
+	}
 </style>
