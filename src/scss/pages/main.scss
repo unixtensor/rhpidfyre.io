@@ -2,5 +2,5 @@
 
 @mixin width-height {
     width: 100vw;
-    height: calc(variables.$main-height - variables.$main-subtraction);
+    height: calc(variables.$main-height - variables.$main-addition);
 }

@@ -1,0 +1,79 @@
+---
+import ThemeButton, {SvgIcons} from "../footer/themebutton.astro"
+
+const SourceCodeLink = "https://git.rhpidfyre.io/rhpidfyre/rhpidfyre.io"
+const AstroLink = "https://astro.build/"
+---
+
+<footer>
+	<div class="footer-margin">
+		<div class="flex-left">
+			<a href={SourceCodeLink}>Source Code</a>
+			<div class="seperator"></div>
+			<a href={AstroLink} target="_blank">{Astro.generator}</a>
+			<div class="seperator"></div>
+			<p class="copyright">Copyright &copy; 2024 rhpidfyre</p>
+		</div>
+		<div class="flex-right">
+			<ThemeButton Icon={SvgIcons.Dark}/>
+			<div class="seperator"></div>
+			<ThemeButton Icon={SvgIcons.Light}/>
+		</div>
+	</div>
+</footer>
+
+<style lang="scss">
+	@use "../../scss/variables.scss";
+	$footer-x-padding: 20px;
+	
+	.copyright {
+		font: {
+			family: unset;
+			size: .9em;
+		};
+		color: var(--copyright-color);
+	}
+	.flex-left {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+	}
+	.flex-right {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		margin-top: 3px;
+		> .seperator {
+			margin-bottom: 4px;
+		}
+	}
+	.seperator {
+		height: 15px;
+		width: 1px;
+		background-color: var(--copyright-color);
+	}
+	.footer-margin {
+		display: flex;
+		justify-content: space-between;
+		margin: 10px;
+		width: inherit
+	}
+	a {
+		font-size: .9em;
+		&:hover {
+			text-decoration: underline {
+				color: rgb(100,100,100);
+			};
+		}
+	}
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: var(--color-secondary);
+		border-top: 1px solid var(--color-primary-border);
+		width: 100vw;
+		height: variables.$bottombar-height;
+		padding: 0
+	}
+</style>

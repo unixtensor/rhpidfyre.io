@@ -1,22 +1,57 @@
 ---
-
+const enum Links {
+	CodeRepositoriesLink = "https://git.rhpidfyre.io/",
+	ServersLink = "",
+	ContactLink = "",
+}
 ---
 
 <header>
-	<nav>
+	<nav class="nav-left">
 		<a href="../pages">
-			<img src="/logo128.png" alt="" loading="lazy" width="35px">
+			<img src="/logo128.png" alt="Home page logo" loading="eager" width="35px">
+		</a>
+	</nav>
+	<nav class="nav-right">
+		<a href={Links.CodeRepositoriesLink}>
+			<button>Code Repository</button>
+		</a>
+		<a href={Links.ServersLink}>
+			<button>Servers</button>
+		</a>
+		<a href={Links.ContactLink}>
+			<button>Contact</button>
 		</a>
 	</nav>
 </header>
 
-
 <style lang="scss">
 	@use "../scss/variables.scss";
+	$padding: 20px;
 
-	nav {
+	.nav-left {
+		padding-left: $padding;
+	}
+	.nav-right {
+		display: flex;
+		gap: 10px;
+		padding-right: $padding;
+	}
+	button {
+		font-size: .9em;
+		background-color: transparent;
+		padding: 10px;
+		border: 0 {
+			radius: 5px
+		};
+		&:hover {
+			background-color: var(--nav-button-hover);
+		}
+	}
+	header {
 		display: flex;
 		align-items: center;
+		justify-content: space-between;
 		background-color: var(--color-secondary);
 		border-bottom: 1px solid var(--color-primary-border);
 		width: 100vw;

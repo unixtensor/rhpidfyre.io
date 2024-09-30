@@ -4,14 +4,26 @@ import Page from '../layouts/page.astro';
 
 <Page title="Home" meta_description="rhpidfyre.io Home Page", disable_overflow="x">
     <main>
-
+		<div class="rhpidfyre-center">
+			<h1>rhpidfyre.io</h1>
+			<h2>Lorem ipsum dolor sit.</h2>
+		</div>
     </main>
 </Page>
 
 <style lang="scss">
 	@use "../scss/pages/main.scss";
 
+	h1, h2 {
+		text-align: center;
+	}
+	h1 {
+		font-size: 3.5em;
+	}
 	main {
 		@include main.width-height;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

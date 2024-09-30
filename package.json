@@ -12,9 +12,12 @@
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "astro": "^4.15.9",
+    "astro-particles": "^2.10.0",
     "autoprefixer": "^10.4.20",
-    "sass": "^1.79.3",
+    "particle.js": "^1.0.7",
+    "sass": "^1.79.4",
     "scss": "^0.2.4",
+    "tsparticles": "^3.5.0",
     "typescript": "^5.6.2",
     "vue": "^3.5.10"
   }
