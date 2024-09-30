@@ -27,14 +27,3 @@ $main-addition: $topbar-height + $bottombar-height + $magic-number-offset;
 	--theme-svg-color: rgb(100,100,100);
 	--theme-svg-color-hover: rgb(200,200,200);
 }
-
-::selection {
-	background-color: var(--selection-background-color);
-	color: var(--selection-color);
-}
-:root {
-	@include light-theme;
-	@media (prefers-color-scheme: dark) {
-		@include dark-theme;
-	}
-}

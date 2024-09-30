@@ -22,9 +22,20 @@ const {title, meta_description, disable_overflow} = Astro.props
 </html>
 
 <style lang="scss" is:global>
-	@forward "../scss/variables.scss";
+	@use "../scss/variables.scss";
 	@use "../scss/layout.scss";
-
+	
+	::selection {
+		background-color: var(--selection-background-color);
+		color: var(--selection-color);
+	}
+	:root {
+		@include variables.light-theme;
+		@media (prefers-color-scheme: dark) {
+			@include variables.dark-theme;
+		}
+	}
+	
 	html {
         color-scheme: light dark;
     }
