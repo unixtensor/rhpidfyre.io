@@ -1,15 +1,12 @@
 ---
 import MetaTags from "../components/body/meta.astro"
 
-interface Props {
+export interface Props {
 	title: string;
 	meta_description: string;
 	disable_overflow: "x" | "y" | "xy";
 }
 const {title, meta_description, disable_overflow} = Astro.props
-
-export type PropsStruct = Props
-//@media screen and (min-width: $breakpoint-sm) {
 ---
 
 <!doctype html>
@@ -26,7 +23,6 @@ export type PropsStruct = Props
 
 <style lang="scss" is:global>
 	@forward "../scss/variables.scss";
-	@forward "../scss/html/a.scss";
 	@use "../scss/layout.scss";
 
 	html {
@@ -38,6 +34,16 @@ export type PropsStruct = Props
     	background-color: var(--color-primary);
         box-sizing: border-box;
     }
+	a {
+		&:visited, &:active, &:link {
+			color: var(--a-link-color);
+		};
+		color: var(--a-link-color);
+		text-decoration: none;
+	}
+	button {
+		cursor: pointer;
+	}
     h1, p {
     	@include layout.no-padding-margin;
     }

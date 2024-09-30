@@ -1,25 +1,37 @@
 $topbar-height: 50px;
-$bottombar-height: 38px;
+$bottombar-height: 35px;
 $main-height: 100vh;
 
-$main-subtraction: $topbar-height + $bottombar-height;
+$magic-number-offset: 2px;
+$main-addition: $topbar-height + $bottombar-height + $magic-number-offset;
+
+//@media screen and (min-width: $breakpoint-sm) {
 
 @mixin light-theme {
-	--color-primary: #1d2328;
-	--color-primary-border: #3b444c;
-	--color-secondary: #171a1e;
-	--color-tertiary: #171a1e;
-	--a-link-color: black;
+	// --color-primary: #1d2328;
+	// --color-primary-border: #3b444c;
+	// --color-secondary: #171a1e;
+	// --nav-button-hover: #282828;
+	// --a-link-color: black;
 }
 
 @mixin dark-theme {
-	--color-primary: #1d2328;
-	--color-primary-border: #3b444c;
-	--color-secondary: #171a1e;
-	--color-tertiary: #171a1e;
+	--color-primary: black;
+	--color-primary-border: rgb(26, 26, 26);
+	--color-secondary: rgb(5, 5, 5);
+	--nav-button-hover: rgb(31, 31, 31);
 	--a-link-color: white;
+	--selection-background-color: rgb(200, 200, 200);
+	--selection-color: black;
+	--copyright-color: rgb(150, 150, 150);
+	--theme-svg-color: rgb(100,100,100);
+	--theme-svg-color-hover: rgb(200,200,200);
 }
 
+::selection {
+	background-color: var(--selection-background-color);
+	color: var(--selection-color);
+}
 :root {
 	@include light-theme;
 	@media (prefers-color-scheme: dark) {
