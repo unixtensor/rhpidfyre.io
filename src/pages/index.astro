@@ -1,11 +1,15 @@
 ---
 import Page from '../layouts/page.astro';
-import VueTsParticles from '../components/vue/tsparticles.vue';
+import VueTsParticles from '../components/vue/tsparticles/app.vue';
+import {httpsLinks} from '../components/ts/links';
 ---
 
 <Page title="Home" meta_description="rhpidfyre.io Home Page", disable_overflow="x">
     <main>
 		<VueTsParticles/>
+		<a href={httpsLinks.GitProfile}>
+			<img src={httpsLinks.GitAvatar} alt="rhpidfyre Profile Picture" loading="eager" width="200">
+		</a>
 		<div class="rhpidfyre-center">
 			<h1>rhpidfyre.io</h1>
 			<h2>Lorem ipsum dolor sit.</h2>
@@ -16,15 +20,29 @@ import VueTsParticles from '../components/vue/tsparticles.vue';
 <style lang="scss">
 	@use "../scss/pages/main.scss";
 
+	a {
+		margin-inline: auto;
+	}
+	img {
+		border-radius: 100%;
+	}
+	.rhpidfyre-center {
+		display: grid;
+		bottom: 50%;
+		position: relative;
+	}
 	h1, h2 {
 		text-align: center;
 	}
 	h1 {
 		font-size: 3.5em;
 	}
+	h2 {
+		margin-top: 0;
+	}
 	main {
 		@include main.width-height;
-		display: flex;
+		display: grid;
 		justify-content: center;
 		align-items: center;
 	}

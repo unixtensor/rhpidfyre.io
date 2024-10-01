@@ -1,25 +1,21 @@
 ---
-const enum Links {
-	CodeRepositoriesLink = "https://git.rhpidfyre.io/",
-	ServersLink = "",
-	ContactLink = "",
-}
+import {httpsLinks} from "./ts/links";
 ---
 
 <header>
 	<nav class="nav-left">
 		<a href="../pages">
-			<img src="/logo128.png" alt="Home page logo" loading="eager" width="35px">
+			<img src="/logo128.png" alt="Home page logo" loading="eager" width="30px">
 		</a>
 	</nav>
 	<nav class="nav-right">
-		<a href={Links.CodeRepositoriesLink}>
+		<a href={httpsLinks.CodeRepositoriesLink}>
 			<button>Code Repository</button>
 		</a>
-		<a href={Links.ServersLink}>
+		<a href={httpsLinks.ServersLink}>
 			<button>Servers</button>
 		</a>
-		<a href={Links.ContactLink}>
+		<a href={httpsLinks.ContactLink}>
 			<button>Contact</button>
 		</a>
 	</nav>
@@ -53,8 +49,8 @@ const enum Links {
 		align-items: center;
 		justify-content: space-between;
 		background-color: var(--color-secondary);
-		border-bottom: 1px solid var(--color-primary-border);
 		width: 100vw;
 		height: variables.$topbar-height;
+		// border-bottom: 1px solid var(--color-primary-border);
 	}
 </style>

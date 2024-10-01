@@ -1,16 +1,14 @@
 ---
 import ThemeButton, {SvgIcons} from "../footer/themebutton.astro"
-
-const SourceCodeLink = "https://git.rhpidfyre.io/rhpidfyre/rhpidfyre.io"
-const AstroLink = "https://astro.build/"
+import {httpsLinks} from "../ts/links";
 ---
 
 <footer>
 	<div class="footer-margin">
 		<div class="flex-left">
-			<a href={SourceCodeLink}>Source Code</a>
+			<a href={httpsLinks.SourceCodeLink}>Source Code</a>
 			<div class="seperator"></div>
-			<a href={AstroLink} target="_blank">{Astro.generator}</a>
+			<a href={httpsLinks.AstroLink} target="_blank">{Astro.generator}</a>
 			<div class="seperator"></div>
 			<p class="copyright">Copyright &copy; 2024 rhpidfyre</p>
 		</div>
