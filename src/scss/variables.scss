@@ -2,9 +2,6 @@ $topbar-height: 50px;
 $bottombar-height: 35px;
 $main-height: 100vh;
 
-$magic-number-offset: 2px;
-$main-addition: $topbar-height + $bottombar-height + $magic-number-offset;
-
 //@media screen and (min-width: $breakpoint-sm) {
 
 @mixin light-theme {
@@ -26,4 +23,9 @@ $main-addition: $topbar-height + $bottombar-height + $magic-number-offset;
 	--copyright-color: rgb(150, 150, 150);
 	--theme-svg-color: rgb(100,100,100);
 	--theme-svg-color-hover: rgb(200,200,200);
+}
+
+//export for react components
+:export {
+
 }
