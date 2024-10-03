@@ -1,6 +1,6 @@
 ---
-import ThemeButton, {SvgIcons} from "../footer/themebutton.astro"
-import {httpsLinks} from "../ts/links";
+import ThemeButton from "../footer/themebutton.astro"
+import {httpsLinks, SvgIcons} from "../ts/enums";
 ---
 
 <footer>
@@ -23,7 +23,7 @@ import {httpsLinks} from "../ts/links";
 <style lang="scss">
 	@use "../../scss/variables.scss";
 	$footer-x-padding: 20px;
-	
+
 	.copyright {
 		font: {
 			family: unset;

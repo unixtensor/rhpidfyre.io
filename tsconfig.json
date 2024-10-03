@@ -1,6 +1,8 @@
 {
-	"extends": "astro/tsconfigs/strictest",
-	"compilerOptions": {
-		"noImplicitAny": true
-	}
+  "extends": "astro/tsconfigs/strictest",
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }

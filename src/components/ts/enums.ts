@@ -1,3 +1,8 @@
+export const enum Themes {
+	Dark,
+	Light
+}
+
 export const enum httpsLinks {
 	AstroLink = "https://astro.build/",
 	SourceCodeLink = "https://git.rhpidfyre.io/rhpidfyre/rhpidfyre.io",

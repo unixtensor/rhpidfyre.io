@@ -1,0 +1,13 @@
+button {
+	background-color: transparent;
+	border: 0;
+	&:hover > svg {
+		fill: var(--theme-svg-color-hover);
+	}
+	&:active {
+		background-color: yellow;
+	}
+	> svg {
+		fill: var(--theme-svg-color);
+	}
+}
