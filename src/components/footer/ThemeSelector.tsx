@@ -4,7 +4,7 @@ import "../../scss/react/footer/button.scss"
 const ChangeTheme = (Theme: Themes) => {
 	const CssRoot = document.querySelector(":root")
 	if (CssRoot) {
-		CssRoot.setAttribute("theme", Theme.toString())
+		CssRoot.setAttribute("data-theme", Theme.toString())
 	} else {
 		console.warn(`:root returned null, got: ${CssRoot}`)
 	}
