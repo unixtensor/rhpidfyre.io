@@ -1,6 +1,6 @@
 ---
-import ThemeButton from "../footer/themebutton.astro"
-import {httpsLinks, SvgIcons} from "../ts/enums";
+import {httpsLinks, Themes} from "../ts/enums";
+import SelectTheme from "./ThemeSelector";
 ---
 
 <footer>
@@ -13,10 +13,17 @@ import {httpsLinks, SvgIcons} from "../ts/enums";
 			<p class="copyright">Copyright &copy; 2024 rhpidfyre</p>
 		</div>
 		<div class="flex-right">
-			<ThemeButton Icon={SvgIcons.Dark}/>
+			<SelectTheme client:visible client:only="react" Icon={Themes.Dark}/>
 			<div class="seperator"></div>
-			<ThemeButton Icon={SvgIcons.Light}/>
+			<SelectTheme client:visible client:only="react" Icon={Themes.Light}/>
 		</div>
+		<noscript>
+			<style>
+				.flex-right > .seperator {
+					display: none;
+				}
+			</style>
+		</noscript>
 	</div>
 </footer>
 
