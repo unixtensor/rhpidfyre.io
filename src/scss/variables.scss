@@ -25,7 +25,14 @@ $main-height: 100vh;
 	--theme-svg-color-hover: rgb(200,200,200);
 }
 
-//export for react components
-:export {
+[data-theme="0"] {
+	@include dark-theme;
+}
+[data-theme="1"] {
+	@include light-theme;
+}
 
+::selection {
+	background-color: var(--selection-background-color);
+	color: var(--selection-color);
 }
