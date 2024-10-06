@@ -1,13 +1,17 @@
+@use "../../variables.scss";
+
 button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background-color: transparent;
 	border: 0;
 	&:hover > svg {
 		fill: var(--theme-svg-color-hover);
-	}
-	&:active {
-		background-color: yellow;
+		transition: fill variables.$button-hover-time;
 	}
 	> svg {
 		fill: var(--theme-svg-color);
+		transition: fill variables.$button-hover-time;
 	}
 }
