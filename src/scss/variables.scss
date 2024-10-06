@@ -2,37 +2,44 @@ $topbar-height: 50px;
 $bottombar-height: 35px;
 $main-height: 100vh;
 
+$button-hover-time: .3s;
+$vertical-column-height: 430px;
+
+$magic-number-offset: 2px;
+$main-height: calc($main-height - ($topbar-height + $bottombar-height + $magic-number-offset));
+
 //@media screen and (min-width: $breakpoint-sm) {
 
 @mixin light-theme {
-	// --color-primary: #1d2328;
-	// --color-primary-border: #3b444c;
-	// --color-secondary: #171a1e;
-	// --nav-button-hover: #282828;
-	// --a-link-color: black;
-}
+	color-scheme: light;
 
-@mixin dark-theme {
-	--color-primary: black;
-	--color-primary-border: rgb(26, 26, 26);
-	--color-secondary: rgb(5, 5, 5);
+	--color-primary: white;
+	--color-primary-border: rgb(200, 200, 200);
+	--color-secondary: rgb(230, 230, 230);
 	--nav-button-hover: rgb(15, 15, 15);
-	--a-link-color: white;
-	--selection-background-color: rgb(199, 199, 199);
-	--selection-color: black;
+	--a-link-color: black;
+	--selection-background-color: rgb(50, 50, 50);
+	--selection-color: white;
 	--copyright-color: rgb(150, 150, 150);
 	--theme-svg-color: rgb(100,100,100);
 	--theme-svg-color-hover: rgb(200,200,200);
 }
 
-[data-theme="0"] {
-	@include dark-theme;
-}
-[data-theme="1"] {
-	@include light-theme;
-}
+@mixin dark-theme {
+	color-scheme: dark;
 
-::selection {
-	background-color: var(--selection-background-color);
-	color: var(--selection-color);
+	--color-primary: black;
+	--color-primary-border: rgb(26, 26, 26);
+	--color-secondary: rgb(5, 5, 5);
+	--nav-button-hover: rgb(15, 15, 15);
+	--a-link-color: white;
+	--a-underline-color: rgb(100,100,100);
+	--selection-background-color: rgb(230, 230, 230);
+	--selection-color: black;
+	--copyright-color: rgb(150, 150, 150);
+	--theme-svg-color: rgb(100,100,100);
+	--theme-svg-color-hover: rgb(200,200,200);
+	--text-color-light: rgb(180,180,180);
+	--even-column-color: rgb(5,5,5);
+
 }

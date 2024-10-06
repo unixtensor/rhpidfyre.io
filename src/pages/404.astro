@@ -1,22 +1,27 @@
 ---
-import Page from '../layouts/page.astro';
+import WebPage from '../layouts/webpage.astro';
 ---
 
-<Page title="404" meta_description="rhpidfyre.io 404", disable_overflow="xy">
+<WebPage title="404" meta_description="rhpidfyre.io 404", disable_overflow="xy">
 	<main>
 		<div class="center-404">
 			<h1>404</h1>
 			<h2>Page not found</h2>
 		</div>
 	</main>
-</Page>
+</WebPage>
 
 <style lang="scss">
 	@use "../scss/variables.scss";
-	@use "../scss/pages/main.scss";
 
+	.center-404 {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+	}
 	main {
-		@include main.width-height;
+		height: variables.$main-height;
+		width: 100vw;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -30,10 +35,5 @@ import Page from '../layouts/page.astro';
 	h2 {
 		font-size: 2em;
 		margin-top: 0;
-	}
-	.center-404 {
-		display: grid;
-		justify-content: center;
-		align-items: center;
 	}
 </style>
