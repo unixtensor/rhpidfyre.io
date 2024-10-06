@@ -1,10 +1,10 @@
 ---
-import WebPage from '../layouts/webpage.astro';
-import Verticalcolumns from '../layouts/verticalcolumns.astro';
+import Html from '../layouts/html.astro';
+import Columns from '../layouts/columns.astro';
 import {httpsLinks} from '../components/ts/enums';
 ---
 
-<WebPage title="Home" meta_description="rhpidfyre.io Home Page" disable_overflow="x">
+<Html title="Home" meta_description="rhpidfyre.io Home Page" disable_overflow="x">
     <main>
     	<section class="title">
 			<a href={httpsLinks.GitProfile}>
@@ -15,9 +15,9 @@ import {httpsLinks} from '../components/ts/enums';
 				<h2>This website belongs to <a href={httpsLinks.GitProfile}>rhpidfyre</a>, it is home to my services and information</h2>
 			</div>
      	</section>
-     	<Verticalcolumns/>
+     	<Columns/>
     </main>
-</WebPage>
+</Html>
 
 <style lang="scss">
 	@use "../scss/variables.scss";
