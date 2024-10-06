@@ -1,6 +1,8 @@
 ---
 import {httpsLinks, Themes} from "../ts/enums";
-import SelectTheme from "./ThemeSelector";
+import ThemeSelector from "./ThemeSelector";
+
+const GiveMeMyRustBack = Themes.Light
 ---
 
 <footer>
@@ -8,18 +10,27 @@ import SelectTheme from "./ThemeSelector";
 		<div class="flex-left">
 			<a href={httpsLinks.SourceCodeLink}>Source Code</a>
 			<div class="seperator"></div>
-			<a href={httpsLinks.AstroLink} target="_blank">{Astro.generator}</a>
-			<div class="seperator"></div>
 			<p class="copyright">Copyright &copy; 2024 rhpidfyre</p>
 		</div>
 		<div class="flex-right">
-			<SelectTheme client:visible client:only="react" Icon={Themes.Dark}/>
+			<!-- Astro bugs 10/5/24 -->
+			<!-- @ts-ignore -->
+			<ThemeSelector client:visible Icon={Themes.Dark}/>
 			<div class="seperator"></div>
-			<SelectTheme client:visible client:only="react" Icon={Themes.Light}/>
+			<!-- @ts-ignore -->
+			<ThemeSelector client:visible Icon={Themes.Light}/>
+			<script is:inline define:vars={{GiveMeMyRustBack}}>
+				if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+					const CssRoot = document.querySelector(":root")
+					if (CssRoot) {
+						CssRoot.setAttribute("data-theme", GiveMeMyRustBack.toString())
+					}
+				}
+			</script>
 		</div>
 		<noscript>
 			<style>
-				.flex-right > .seperator {
+				.flex-right {
 					display: none;
 				}
 			</style>
