@@ -1,32 +1,19 @@
 ---
-import {httpsLinks, Themes} from "../ts/enums";
+import {HttpsLinks, Themes} from "../ts/enums";
 import ThemeSelector from "./ThemeSelector";
-
-const GiveMeMyRustBack = Themes.Light
 ---
 
 <footer>
 	<div class="footer-margin">
 		<div class="flex-left">
-			<a href={httpsLinks.SourceCodeLink}>Source Code</a>
+			<a href={HttpsLinks.SourceCodeLink}>Source Code</a>
 			<div class="seperator"></div>
 			<p class="copyright">Copyright &copy; 2024 rhpidfyre</p>
 		</div>
 		<div class="flex-right">
-			<!-- Astro bugs 10/5/24 -->
-			<!-- @ts-ignore -->
 			<ThemeSelector client:visible Icon={Themes.Dark}/>
 			<div class="seperator"></div>
-			<!-- @ts-ignore -->
 			<ThemeSelector client:visible Icon={Themes.Light}/>
-			<script is:inline define:vars={{GiveMeMyRustBack}}>
-				if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-					const CssRoot = document.querySelector(":root")
-					if (CssRoot) {
-						CssRoot.setAttribute("data-theme", GiveMeMyRustBack.toString())
-					}
-				}
-			</script>
 		</div>
 		<noscript>
 			<style>

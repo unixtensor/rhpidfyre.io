@@ -1,7 +1,7 @@
 ---
-import MetaTags from "../components/head/meta.astro"
-import TopBar from '../components/topbar.astro';
+import MetaTags from "../components/html/meta.astro"
 import FooterBar from '../components/footer/footer.astro';
+import { Themes } from "../components/ts/enums";
 
 interface Props {
 	title: string;
@@ -9,6 +9,7 @@ interface Props {
 	disable_overflow: "x" | "y" | "xy";
 }
 const {title, meta_description, disable_overflow} = Astro.props
+const ptr = Themes.Light
 ---
 
 <!doctype html>
@@ -19,7 +20,14 @@ const {title, meta_description, disable_overflow} = Astro.props
 		<title>{`rhpidfyre.io | ${title}`}</title>
 	</head>
 	<body style={disable_overflow === "xy" ? "overflow: hidden" : `overflow-${disable_overflow}: hidden`}>
-		<TopBar/>
+		<script is:inline define:vars={{ptr}}>
+			if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+				const CssRoot = document.querySelector(":root")
+				if (CssRoot) {
+					CssRoot.setAttribute("data-theme", GiveMeMyRustBack.toString())
+				}
+			}
+		</script>
 		<slot/>
 		<FooterBar/>
 	</body>
@@ -27,7 +35,6 @@ const {title, meta_description, disable_overflow} = Astro.props
 
 <style lang="scss" is:global>
 	@use "../scss/variables.scss";
-	@use "../scss/layout.scss";
 
 	[data-theme="0"] {
 		@include variables.dark-theme;
@@ -62,7 +69,8 @@ const {title, meta_description, disable_overflow} = Astro.props
 		cursor: pointer;
 	}
     h1, h2, p {
-    	@include layout.no-padding-margin;
+    	padding: 0;
+     	margin: 0;
      	text-wrap: balance;
     }
 </style>

@@ -34,12 +34,12 @@ $main-height: calc($main-height - ($topbar-height + $bottombar-height + $magic-n
 	--nav-button-hover: rgb(15, 15, 15);
 	--a-link-color: white;
 	--a-underline-color: rgb(100,100,100);
-	--selection-background-color: rgb(230, 230, 230);
+	--selection-background-color: rgb(180, 180, 180);
 	--selection-color: black;
 	--copyright-color: rgb(150, 150, 150);
 	--theme-svg-color: rgb(100,100,100);
 	--theme-svg-color-hover: rgb(200,200,200);
 	--text-color-light: rgb(180,180,180);
 	--even-column-color: rgb(5,5,5);
-
+	--image-border-color: rgb(10,10,10);
 }

@@ -1,0 +1,33 @@
+---
+import {SvgIcons} from "../ts/enums";
+import type {SvgProps} from "../ts/types"
+import Icon from "../icon.astro";
+
+interface Props extends SvgProps {
+	Href: string,
+	SvgIcon: SvgIcons,
+	Text: string
+}
+const {
+	Href,
+	SvgIcon,
+	Text,
+	Height = "20px",
+	Width = "20px",
+	Color = "#e8eaed"
+} = Astro.props
+---
+
+<a href={Href}>
+	<Icon SvgIcon={SvgIcon} Height={Height} Width={Width} Color={Color}/>
+	<button>{Text}</button>
+</a>
+
+<style lang="scss">
+	a {
+		display: flex;
+		padding: 10px;
+		background-color: rgb(20,20,20);
+		border-radius: 10px;
+	}
+</style>
