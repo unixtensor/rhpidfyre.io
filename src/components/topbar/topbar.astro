@@ -1,0 +1,51 @@
+---
+import {HttpsLinks, SvgIcons} from "../ts/enums";
+import TopBarButton from "./button.astro";
+---
+
+<main class="page-container">
+	<nav class="topbar">
+		<div class="topbar-item left">
+			<a href="">
+				<img src="/logo128.png" alt="Home" width="50">
+			</a>
+			<h1>rhpidfyre.io</h1>
+		</div>
+		<div class="topbar-item right">
+			<TopBarButton Text="Repositories" Href={HttpsLinks.CodeRepositoriesLink} SvgIcon={SvgIcons.Repositories}/>
+		</div>
+	</nav>
+	<main class="page-content">
+		<slot/>
+	</main>
+</main>
+
+<style lang="scss">
+	$margin-left-right: 15px;
+
+	h1 {
+		font-size: 1.2em;
+	}
+	a {
+		font-size: 1.5em;
+	}
+	.topbar {
+		display: flex;
+		justify-content: space-between;
+		background-color: transparent;
+		width: 100vw;
+		height: 80px;
+		> .right {
+			margin-right: $margin-left-right;
+		};
+		> .left {
+			margin-left: $margin-left-right;
+			gap: 15px;
+		}
+	}
+	.topbar-item {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>

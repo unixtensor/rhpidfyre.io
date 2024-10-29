@@ -1,8 +1,0 @@
-@use "../variables.scss";
-
-$magic-number-offset: 2px;
-
-@mixin width-height {
-    width: 100vw;
-    height: calc(variables.$main-height - (variables.$topbar-height + variables.$bottombar-height + $magic-number-offset));
-}

@@ -1,12 +1,15 @@
 ---
-import MetaTags from "../components/body/meta.astro"
+import MetaTags from "../components/html/meta.astro"
+import FooterBar from '../components/footer/footer.astro';
+import { Themes } from "../components/ts/enums";
 
-export interface Props {
+interface Props {
 	title: string;
 	meta_description: string;
 	disable_overflow: "x" | "y" | "xy";
 }
 const {title, meta_description, disable_overflow} = Astro.props
+const ptr = Themes.Light
 ---
 
 <!doctype html>
@@ -17,34 +20,57 @@ const {title, meta_description, disable_overflow} = Astro.props
 		<title>{`rhpidfyre.io | ${title}`}</title>
 	</head>
 	<body style={disable_overflow === "xy" ? "overflow: hidden" : `overflow-${disable_overflow}: hidden`}>
+		<script is:inline define:vars={{ptr}}>
+			if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+				const CssRoot = document.querySelector(":root")
+				if (CssRoot) {
+					CssRoot.setAttribute("data-theme", GiveMeMyRustBack.toString())
+				}
+			}
+		</script>
 		<slot/>
+		<FooterBar/>
 	</body>
 </html>
 
 <style lang="scss" is:global>
 	@use "../scss/variables.scss";
-	@use "../scss/layout.scss";
 
-	html {
-        color-scheme: light dark;
-    }
+	[data-theme="0"] {
+		@include variables.dark-theme;
+	}
+	[data-theme="1"] {
+		@include variables.light-theme;
+	}
+	::selection {
+		background-color: var(--selection-background-color);
+		color: var(--selection-color);
+	}
     body {
-   		@include layout.no-padding-margin;
+   		padding: 0;
+     	margin: 0;
     	font-family: -apple-system, "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla";
     	background-color: var(--color-primary);
         box-sizing: border-box;
     }
 	a {
+		color: var(--a-link-color);
+		text-decoration: none;
 		&:visited, &:active, &:link {
 			color: var(--a-link-color);
 		};
-		color: var(--a-link-color);
-		text-decoration: none;
+		&:hover {
+			text-decoration: underline {
+				color: var(--a-underline-color)
+			};
+		}
 	}
 	button {
 		cursor: pointer;
 	}
-    h1, p {
-    	@include layout.no-padding-margin;
+    h1, h2, p {
+    	padding: 0;
+     	margin: 0;
+     	text-wrap: balance;
     }
 </style>

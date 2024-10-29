@@ -1,23 +1,36 @@
 ---
-import Page from '../layouts/page.astro';
-import {httpsLinks} from '../components/ts/enums';
+import Html from '../layouts/html.astro'
+import Topbar from '../components/topbar/topbar.astro'
+import {HttpsLinks} from '../components/ts/enums'
 ---
 
-<Page title="Home" meta_description="rhpidfyre.io Home Page", disable_overflow="x">
-    <main>
-		<a href={httpsLinks.GitProfile}>
-			<img src={httpsLinks.GitAvatar} alt="rhpidfyre Profile Picture" loading="eager" width="200">
-		</a>
-		<div class="rhpidfyre-center">
-			<h1>rhpidfyre.io</h1>
-			<h2>Lorem ipsum dolor sit.</h2>
-		</div>
-    </main>
-</Page>
+<Html title="Home" meta_description="rhpidfyre.io Home Page" disable_overflow="x">
+    <Topbar>
+    	<section class="title">
+			<a href={HttpsLinks.GitProfile}>
+				<img src={HttpsLinks.GitAvatar} alt="rhpidfyre Profile Picture" width="200">
+			</a>
+			<div class="rhpidfyre-center">
+				<h1>rhpidfyre.io</h1>
+				<h2>This website belongs to <a href={HttpsLinks.GitProfile}>rhpidfyre</a>, it is home to my services and information</h2>
+			</div>
+     	</section>
+    </Topbar>
+</Html>
 
 <style lang="scss">
-	@use "../scss/pages/main.scss";
+	@use "../scss/variables.scss";
 
+	.title {
+		display: grid;
+		justify-content: center;
+		align-items: center;
+		gap: 50px;
+		height: 700px;
+		> a {
+			margin-top: 100px
+		}
+	}
 	.rhpidfyre-center {
 		display: grid;
 		bottom: 50%;
@@ -27,7 +40,7 @@ import {httpsLinks} from '../components/ts/enums';
 		margin-inline: auto;
 	}
 	img {
-		border-radius: 100%;
+		border: 5px solid var(--image-border-color);
 	}
 	h1, h2 {
 		text-align: center;
@@ -36,11 +49,13 @@ import {httpsLinks} from '../components/ts/enums';
 		font-size: 3.5em;
 	}
 	h2 {
-		margin-top: 0;
+		margin-top: 5px;
+		font-weight: normal;
+		color: var(--text-color-light);
 	}
 	main {
-		@include main.width-height;
-		display: grid;
+		display: flex;
+		width: 100vw;
 		justify-content: center;
 		align-items: center;
 	}

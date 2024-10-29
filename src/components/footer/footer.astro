@@ -1,25 +1,23 @@
 ---
-import {httpsLinks, Themes} from "../ts/enums";
-import SelectTheme from "./ThemeSelector";
+import {HttpsLinks, Themes} from "../ts/enums";
+import ThemeSelector from "./ThemeSelector";
 ---
 
 <footer>
 	<div class="footer-margin">
 		<div class="flex-left">
-			<a href={httpsLinks.SourceCodeLink}>Source Code</a>
-			<div class="seperator"></div>
-			<a href={httpsLinks.AstroLink} target="_blank">{Astro.generator}</a>
+			<a href={HttpsLinks.SourceCodeLink}>Source Code</a>
 			<div class="seperator"></div>
 			<p class="copyright">Copyright &copy; 2024 rhpidfyre</p>
 		</div>
 		<div class="flex-right">
-			<SelectTheme client:visible client:only="react" Icon={Themes.Dark}/>
+			<ThemeSelector client:visible Icon={Themes.Dark}/>
 			<div class="seperator"></div>
-			<SelectTheme client:visible client:only="react" Icon={Themes.Light}/>
+			<ThemeSelector client:visible Icon={Themes.Light}/>
 		</div>
 		<noscript>
 			<style>
-				.flex-right > .seperator {
+				.flex-right {
 					display: none;
 				}
 			</style>
@@ -49,7 +47,7 @@ import SelectTheme from "./ThemeSelector";
 		gap: 5px;
 		margin-top: 3px;
 		> .seperator {
-			margin-bottom: 4px;
+			margin-bottom: 2px;
 		}
 	}
 	.seperator {
@@ -65,11 +63,6 @@ import SelectTheme from "./ThemeSelector";
 	}
 	a {
 		font-size: .9em;
-		&:hover {
-			text-decoration: underline {
-				color: rgb(100,100,100);
-			};
-		}
 	}
 	footer {
 		display: flex;
