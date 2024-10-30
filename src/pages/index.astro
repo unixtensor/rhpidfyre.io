@@ -1,35 +1,33 @@
 ---
 import Html from '../layouts/html.astro'
-import Topbar from '../components/topbar/topbar.astro'
 import {HttpsLinks} from '../components/ts/enums'
+import RhpidLogo from "../components/rhpid_logo.astro"
 ---
 
 <Html title="Home" meta_description="rhpidfyre.io Home Page" disable_overflow="x">
-    <Topbar>
-    	<section class="title">
-			<a href={HttpsLinks.GitProfile}>
-				<img src={HttpsLinks.GitAvatar} alt="rhpidfyre Profile Picture" width="200">
-			</a>
-			<div class="rhpidfyre-center">
-				<h1>rhpidfyre.io</h1>
-				<h2>This website belongs to <a href={HttpsLinks.GitProfile}>rhpidfyre</a>, it is home to my services and information</h2>
-			</div>
-     	</section>
-    </Topbar>
+	<section class="title">
+		<RhpidLogo/>
+		<div class="rhpidfyre-center">
+			<h1>rhpidfyre.io</h1>
+			<h2>This website <span id="fun">belongs to</span> <a href={HttpsLinks.GitProfile}>rhpidfyre</a>.</h2>
+			<script is:inline>
+				const fun_element = document.getElementById("fun")
+				if (fun_element) {
+					const fun_vec = ["belongs to", "is owned by", "was developed by", "is maintained by"]
+					fun_element.innerText = fun_vec[Math.round(Math.random()*(fun_vec.length-1))]
+				}
+			</script>
+		</div>
+	</section>
 </Html>
 
 <style lang="scss">
-	@use "../scss/variables.scss";
-
 	.title {
 		display: grid;
 		justify-content: center;
 		align-items: center;
 		gap: 50px;
 		height: 700px;
-		> a {
-			margin-top: 100px
-		}
 	}
 	.rhpidfyre-center {
 		display: grid;
@@ -38,9 +36,11 @@ import {HttpsLinks} from '../components/ts/enums'
 	}
 	a {
 		margin-inline: auto;
-	}
-	img {
-		border: 5px solid var(--image-border-color);
+		&:hover {
+			text-decoration: underline {
+				color: var(--a-underline-color)
+			};
+		}
 	}
 	h1, h2 {
 		text-align: center;
@@ -52,11 +52,5 @@ import {HttpsLinks} from '../components/ts/enums'
 		margin-top: 5px;
 		font-weight: normal;
 		color: var(--text-color-light);
-	}
-	main {
-		display: flex;
-		width: 100vw;
-		justify-content: center;
-		align-items: center;
 	}
 </style>

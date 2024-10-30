@@ -1,12 +1,11 @@
-$topbar-height: 50px;
+$topbar-height: 75px;
 $bottombar-height: 35px;
 $main-height: 100vh;
-
 $button-hover-time: .3s;
 $vertical-column-height: 430px;
-
 $magic-number-offset: 2px;
 $main-height: calc($main-height - ($topbar-height + $bottombar-height + $magic-number-offset));
+$rhpidfyre-icon-size: 230px;
 
 //@media screen and (min-width: $breakpoint-sm) {
 
@@ -42,4 +41,6 @@ $main-height: calc($main-height - ($topbar-height + $bottombar-height + $magic-n
 	--text-color-light: rgb(180,180,180);
 	--even-column-color: rgb(5,5,5);
 	--image-border-color: rgb(10,10,10);
+	--topbar-button-gradient: linear-gradient(145deg, rgb(20,20,20) 0%, rgb(10,10,10) 100%);
+	--topbar-button-hover: rgb(40,40,40);
 }

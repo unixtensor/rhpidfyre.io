@@ -26,8 +26,15 @@ const {
 <style lang="scss">
 	a {
 		display: flex;
+		justify-content: center;
+		align-items: center;
 		padding: 10px;
-		background-color: rgb(20,20,20);
+		background: var(--topbar-button-gradient);
 		border-radius: 10px;
+		&:hover {
+			background: none {
+				color: var(--topbar-button-hover)
+			};
+		}
 	}
 </style>

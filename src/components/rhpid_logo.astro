@@ -1,0 +1,21 @@
+---
+import {HttpsLinks} from "./ts/enums";
+---
+
+<a href={HttpsLinks.GitProfile}>
+	<img src={HttpsLinks.GitAvatar} alt="rhpidfyre Profile Picture">
+</a>
+
+<style lang="scss">
+	@use "../scss/variables.scss";
+
+	img {
+		display: flex;
+		place-content: center;
+		margin-inline: auto;
+		width: variables.$rhpidfyre-icon-size;
+		&::before, &::after {
+
+		}
+	}
+</style>
