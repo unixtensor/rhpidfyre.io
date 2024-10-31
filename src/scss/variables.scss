@@ -7,8 +7,6 @@ $magic-number-offset: 2px;
 $main-height: calc($main-height - ($topbar-height + $bottombar-height + $magic-number-offset));
 $rhpidfyre-icon-size: 230px;
 
-//@media screen and (min-width: $breakpoint-sm) {
-
 @mixin light-theme {
 	color-scheme: light;
 

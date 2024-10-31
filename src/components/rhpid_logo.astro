@@ -8,14 +8,41 @@ import {HttpsLinks} from "./ts/enums";
 
 <style lang="scss">
 	@use "../scss/variables.scss";
+	$rotate-time: 20s;
 
+	/* @property --rotate-on-angle {
+		syntax: "<angle>";
+		initial-value: 0deg;
+		inherits: false;
+	}; */
+	/* @keyframes rotation {
+		from {--rotate-on-angle: 0deg;}
+		to {--rotate-on-angle: 360deg;}
+	}; */
 	img {
 		display: flex;
 		place-content: center;
 		margin-inline: auto;
 		width: variables.$rhpidfyre-icon-size;
-		&::before, &::after {
-
-		}
+		/* &::before, &::after {
+			content: "";
+			inset: -.5em;
+			z-index: -1;
+			position: absolute;
+			width: calc(variables.$rhpidfyre-icon-size + 25px);
+			height: calc(variables.$rhpidfyre-icon-size + 25px);
+			background: conic-gradient(
+				from var(--rotate-on-angle),
+				rgb(10,10,10),
+				rgb(30,30,30),
+				rgb(60,60,60),
+				rgb(90,90,90)
+			);
+			margin-inline: auto;
+			animation: rotation $rotate-time linear infinite;
+		};
+		&::after {
+			filter: blur(3.5rem);
+		} */
 	}
 </style>

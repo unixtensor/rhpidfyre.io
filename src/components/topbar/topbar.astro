@@ -35,6 +35,7 @@ import TopBarButton from "./button.astro";
 	header {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		background-color: transparent;
 		width: 100vw;
 		height: variables.$topbar-height;
@@ -43,6 +44,8 @@ import TopBarButton from "./button.astro";
 			gap: 13px;
 		};
 		> .left {
+			display: flex;
+			place-content: center;
 			margin-left: $margin-left-right;
 			gap: 15px;
 		}
