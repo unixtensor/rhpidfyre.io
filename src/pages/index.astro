@@ -1,6 +1,7 @@
 ---
 import Webpage from '../layouts/Webpage.astro';
 import { Links } from '../ts/links';
+import Shell from '../components/react/shell';
 ---
 
 <Webpage title="Home">
@@ -22,19 +23,23 @@ import { Links } from '../ts/links';
 			<p><span class="red">But, you will not be limited at exploring my services which you can find by navigating towards the top-right.</span></p>
 			<p><span class="red">=================================================</span></p>
 		</noscript>
+		<Shell client:only/>
 	</main>
 </Webpage>
 
-<style lang="scss">
+<style lang="scss" is:global>
 	@use "../scss/variables";
 
 	@mixin text-styles {
-		.red   { color: rgb(200,0,0); }
-		.green { color: rgb(0,200,0); }
-		.blue  { color: rgb(0,0,200); }
+		.red   { color: rgb(200, 0, 0); }
+		.green { color: rgb(0, 200, 0); }
+		.blue  { color: rgb(0, 0, 200); }
+		.cyan  { color: rgb(18,167,148); }
 	}
 
-	:global(main) {
+	.shell-prompt { display: flex; }
+
+	main {
 		width: 100vw;
 		height: calc(99.3vh - variables.$header-Y - variables.$footer-Y);
 		padding: 5px;
@@ -49,9 +54,19 @@ import { Links } from '../ts/links';
 				font-size: inherit;
 				&:hover { text-decoration: underline; }
 			}
+			span { font-size: inherit }
 		}
 		.return {
 			margin-top: 25px;
 		}
+	}
+	input {
+		font-size: 1.2rem;
+		background-color: transparent;
+		border: 0;
+		outline: 0;
+		width: 90%;
+		/* Pester me when this gets undrafted */
+		caret-shape: block;
 	}
 </style>
