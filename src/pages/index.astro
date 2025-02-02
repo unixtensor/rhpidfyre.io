@@ -1,7 +1,57 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Webpage from '../layouts/Webpage.astro';
+import { Links } from '../ts/links';
 ---
 
-<Layout>
+<Webpage title="Home">
+	<main>
+		<p>Welcome to rhpidfyre.io!</p>
+		<div class="return"></div>
+		<p>This is a personal website by rhpidfyre / Brandon.</p>
+		<p>You can find my services here or learn about me.</p>
+		<div class="return"></div>
+		<p>You can also contribute or view the source code of my website via the links:</p>
+		<p>{"<"}<a href={Links.RepoGitea} target="_blank">{Links.RepoGitea}</a>{">."}</p>
+		<p>{"<"}<a href={Links.RepoGithub} target="_blank">{Links.RepoGithub}</a>{">."}</p>
+		<div class="return"></div>
+		<p>You can get started with the command: help</p>
+		<div class="return"></div>
+		<noscript>
+			<p><span class="red">=================================================</span></p>
+			<p><span class="red">JavaScript is disabled, functionality will be limited. :(</span></p>
+			<p><span class="red">But, you will not be limited at exploring my services which you can find by navigating towards the top-right.</span></p>
+			<p><span class="red">=================================================</span></p>
+		</noscript>
+	</main>
+</Webpage>
 
-</Layout>
+<style lang="scss">
+	@use "../scss/variables";
+
+	@mixin text-styles {
+		.red   { color: rgb(200,0,0); }
+		.green { color: rgb(0,200,0); }
+		.blue  { color: rgb(0,0,200); }
+	}
+
+	:global(main) {
+		width: 100vw;
+		height: calc(99.3vh - variables.$header-Y - variables.$footer-Y);
+		padding: 5px;
+		overflow-y: auto;
+
+		p {
+			@include text-styles;
+			font-size: 1.2rem;
+			margin: 5px;
+
+			a {
+				font-size: inherit;
+				&:hover { text-decoration: underline; }
+			}
+		}
+		.return {
+			margin-top: 25px;
+		}
+	}
+</style>

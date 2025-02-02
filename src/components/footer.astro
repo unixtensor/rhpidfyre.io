@@ -1,0 +1,46 @@
+---
+---
+
+<footer>
+	<p class="raw-text" id="time">00:00:00</p>
+	<section>
+		<p class="raw-text" id="column-line">0, 0</p>
+		<button id="toggle-monospace">Monospace</button>
+		<button id="toggle-term-mode">UNIX</button>
+	</section>
+	<noscript>
+		<style>
+			#toggle-monospace, .raw-text { display: none }
+		</style>
+	</noscript>
+</footer>
+
+<style lang="scss">
+	@use "../scss/variables";
+
+	footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 100vw;
+		height: variables.$footer-Y;
+		background-color: var(--body-background-color)
+	}
+	p {
+		padding: 0 20px 0 20px;
+	}
+	section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+
+		button {
+			height: 100%;
+			padding: 0 20px 0 20px;
+
+			&:hover { background-color: var(--hf-button-hover-color) }
+		}
+	}
+	#toggle-term-mode { background-color: rgb(0,50,90) }
+</style>

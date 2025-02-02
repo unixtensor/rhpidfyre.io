@@ -1,0 +1,21 @@
+---
+interface Props {
+	href: string,
+	display: string,
+	color?: string
+}
+const {href, display, color = "transparent"} = Astro.props
+---
+
+<button style={`background-color: ${color}`}>
+	<a href={href}>{display}</a>
+</button>
+
+<style lang="scss">
+	button {
+		height: 100%;
+		padding: 0 20px 0 20px;
+
+		&:hover { background-color: var(--hf-button-hover-color) }
+	}
+</style>

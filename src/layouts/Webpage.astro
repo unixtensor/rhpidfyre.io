@@ -1,0 +1,63 @@
+---
+import Metas from "../components/metas.astro"
+import Header from "../components/header.astro"
+import Footer from "../components/footer.astro"
+
+interface Props {
+	title: string,
+}
+const {title} = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<Metas/>
+		<link rel="icon" type="image/png" href="/logo.png"/>
+		<title>{`rhpidfyre.io | ${title}`}</title>
+	</head>
+	<body>
+		<Header title={title}/>
+		<slot/>
+		<Footer/>
+	</body>
+</html>
+
+<style is:global lang="scss">
+	@forward "../scss/fonts";
+	@forward "../scss/terminal";
+
+	* {
+		font-family: 'Terminus', monospace;
+		font-size: 15px;
+		letter-spacing: 2px;
+		cursor: text;
+	}
+	:root {
+		color-scheme: dark;
+
+		--body-background-color: rgb(0,0,0);
+		--hf-button-hover-color: rgb(50,50,50);
+	}
+	::selection {
+		background-color: rgb(255,255,255);
+		color: rgb(0,0,0);
+	}
+
+	body {
+		box-sizing: border-box;
+		margin: 0;
+		overflow: hidden;
+		background-color: var(--body-background-color);
+	}
+	button {
+		background-color: transparent;
+		border: 0;
+	}
+	a {
+		color: white;
+		cursor:	unset;
+
+		&:hover, &:active, &:link { text-decoration: none; }
+	}
+</style>
