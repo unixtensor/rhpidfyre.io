@@ -1,0 +1,29 @@
+@mixin color-matrix {
+	.red   { color: rgb(200, 0, 0); }
+	.green { color: rgb(0, 200, 0); }
+	.blue  { color: rgb(0, 0, 200); }
+	.cyan  { color: rgb(18,167,148); }
+}
+
+@mixin text-styles {
+	.bold { font-weight: bold; }
+}
+
+@mixin formatting {
+	.return { margin-top: 25px; }
+	.shell-prompt { display: flex; }
+
+	p {
+		@include color-matrix;
+		@include text-styles;
+
+		font-size: 1.2rem;
+		margin: 5px;
+
+		span { font-size: inherit; }
+		a {
+			font-size: inherit;
+			&:hover { text-decoration: underline; }
+		}
+	}
+}

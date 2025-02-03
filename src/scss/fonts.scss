@@ -5,3 +5,13 @@
 	font-weight: 500;
 	src: url('/Terminus.woff2') format('woff2');
 }
+
+* {
+	font: {
+		family: 'Terminus', monospace;
+		size: 15px;
+	};
+	letter-spacing: 2px;
+	text-wrap: nowrap;
+	cursor: text;
+}
