@@ -11,25 +11,34 @@ const enum Key {
 	Tab       = "Tab"
 }
 
-function DisplayPrompt() {
+function display_prompt() {
 	return <>
 		<Display/>
 		<input className="shell-ps1" type="text" spellCheck={false}/>
 	</>
 }
 
-function Prompt([existingPrompts, setPrompt]: [JSX.Element[], SetStateAction<JSX.Element[]>]) {
-	const shell_prompts = document.getElementsByClassName("shell-ps1")
-	Array.from(shell_prompts).forEach((shellps1) => {
-		(shellps1 as HTMLInputElement).disabled = true
-	})
-	setPrompt([...existingPrompts, DisplayPrompt()])
+function get_current_prompt(): HTMLInputElement | undefined {
+	const shell_input = document.getElementsByClassName("shell-ps1")
+	return shell_input[shell_input.length-1] as HTMLInputElement
 }
 
-function keyboard_stream(terminal_window: HTMLElement, existingPrompts: JSX.Element[], setPrompt: SetStateAction<JSX.Element[]>) {
-	terminal_window.addEventListener("keydown", keyboard_event => {
+function new_prompt([existingPrompts, setPrompt]: [JSX.Element[], SetStateAction<JSX.Element[]>]) {
+	const shell_prompts = document.getElementsByClassName("shell-ps1")
+	Array.from(shell_prompts).forEach(shellps1 => {
+		(shellps1 as HTMLInputElement).disabled = true
+	})
+	setPrompt([...existingPrompts, display_prompt()])
+}
+
+function keyboard_event(terminal: HTMLElement, existingPrompts: JSX.Element[], setPrompt: SetStateAction<JSX.Element[]>) {
+	const terminal_event = (keyboard_event: KeyboardEvent) => {
 		if (keyboard_event.key === Key.Enter) {
-			Prompt([existingPrompts, setPrompt])
+			const current_prompt = get_current_prompt()
+			if (current_prompt) {
+				new_prompt([existingPrompts, setPrompt])
+				terminal.removeEventListener("keydown", terminal_event)
+			}
 		} else if (keyboard_event.key === Key.ArrowUp) {
 
 		} else if (keyboard_event.key === Key.ArrowDown) {
@@ -37,18 +46,11 @@ function keyboard_stream(terminal_window: HTMLElement, existingPrompts: JSX.Elem
 		} else if (keyboard_event.key === Key.Tab) {
 
 		}
-	})
-}
-
-function Events() {
-	const terminal_window = document.querySelector("main")
-	if (terminal_window) {
-		const [existingPrompts, setPrompt] = useState([DisplayPrompt()])
-
-		keyboard_stream(terminal_window, existingPrompts, setPrompt)
-		return existingPrompts
 	}
-	return
+	terminal.addEventListener("keydown", terminal_event)
 }
 
-export default Events
+export {
+	keyboard_event,
+	display_prompt
+}

@@ -3,7 +3,11 @@ import { cyan, green } from "./color"
 
 const userAgent = navigator.userAgent
 const browser_name_fallible = userAgent.match(/Firefox.\d+[\d.\d]+|Chrome.\d+[\d.\d]+/gm)?.map(f => f.split("/")[0])
-const browser_name = browser_name_fallible ? browser_name_fallible[0].toLowerCase() : "unknown"
+
+let browser_name = "unknown"
+if (browser_name_fallible) {
+	browser_name = browser_name_fallible[0] === "Firefox" ? "gecko" : "chromium"
+}
 
 function GetWorkingDir() {
 	return working_dir === "user" ? "~" : working_dir

@@ -1,9 +1,11 @@
-import { TermEvents } from "./events"
+import { useState } from "react"
 import { red } from "../shell/color"
 
-import Events from "../shell/events"
+import { display_prompt, keyboard_event } from "../shell/events"
 
-function Panic(message: string) {
+const terminal_window = document.querySelector("main")
+
+function panic(message: string) {
 	return <>
 		<p>{red("=================================================")}</p>
 		<p>{red("An unexpected JavaScript error occured:")}</p>
@@ -13,9 +15,13 @@ function Panic(message: string) {
 }
 
 export default function Shell() {
-	const existingPrompts = Events()
-	if (existingPrompts) {
+	if (terminal_window) {
+		const [existingPrompts, setPrompt] = useState([display_prompt()])
+		keyboard_event(terminal_window, existingPrompts, setPrompt)
+
 		return existingPrompts.map((ps1, k) => <div className="shell-prompt" key={k}>{ps1}</div>)
 	}
-	return Panic("The <main> element is missing")
+	return panic("The <main> element is missing")
 }
+
+export { panic }
