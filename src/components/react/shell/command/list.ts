@@ -1,4 +1,4 @@
-import { working_dir } from "./fs"
+import { working_dir } from "../../fs"
 
 function ls() {
 
