@@ -4,6 +4,7 @@ const enum EntryType {
 	Directory,
 	File
 }
+
 type File = string
 type Entry<T> = {
 	readonly inner: T,

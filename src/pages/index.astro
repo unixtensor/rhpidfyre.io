@@ -1,7 +1,7 @@
 ---
 import Webpage from '../layouts/Webpage.astro';
 import Motd from '../components/terminal/motd.astro';
-import Terminal from '../components/react/terminal';
+import Terminal from '../components/react/terminal/exec';
 ---
 
 <Webpage title="Home">
@@ -31,5 +31,7 @@ import Terminal from '../components/react/terminal';
 		width: 90%;
 		/* Pester me when this gets undrafted */
 		caret-shape: block;
+
+		&:disabled { color: white }
 	}
 </style>
