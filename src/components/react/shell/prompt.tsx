@@ -1,4 +1,4 @@
-import { working_dir } from "./fs"
+import { get_working_dir_name_full } from "./fs/fn"
 import { cyan, green } from "./color"
 
 const userAgent = navigator.userAgent
@@ -9,13 +9,14 @@ if (browser_name_fallible) {
 	browser_name = browser_name_fallible[0] === "Firefox" ? "gecko" : "chromium"
 }
 
-function GetWorkingDir() {
-	return working_dir === "user" ? "~" : working_dir
+function working_dir() {
+	const name = get_working_dir_name_full()
+	return name === "user" ? "~" : name
 }
 
 export default function Display() {
 	const user = cyan("user")
-	const dir = green(GetWorkingDir())
+	const dir = green(working_dir())
 	return <p>{user}@{browser_name} {dir}{"> "}</p>
 }
 

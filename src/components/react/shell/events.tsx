@@ -33,14 +33,14 @@ function new_prompt(): JSX.Element {
 	return display_prompt()
 }
 
-function keyboard_events(terminal_window: HTMLElement, new_element_f: newElement) {
+function keyboard_events(terminal_window: HTMLElement, new_elements_f: newElement) {
 	const terminal_event = (keyboard_event: KeyboardEvent) => {
 		if (keyboard_event.key === Key.Enter) {
 			const current_prompt = get_current_prompt()
 			if (current_prompt) {
 				const prompt = new_prompt()
 				const output = run(current_prompt.value)
-				new_element_f([output, prompt])
+				new_elements_f([output, prompt])
 				terminal_window.removeEventListener("keydown", terminal_event)
 			}
 		} else if (keyboard_event.key === Key.ArrowUp) {
