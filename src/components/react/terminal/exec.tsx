@@ -1,7 +1,8 @@
-import { useState } from "react"
+import { useState, type JSX } from "react"
 import { red } from "../shell/color"
+import { display_prompt, keyboard_events } from "../shell/events"
 
-import { display_prompt, keyboard_event } from "../shell/events"
+import React from "react"
 
 const terminal_window = document.querySelector("main")
 
@@ -14,14 +15,21 @@ function panic(message: string) {
 	</>
 }
 
+type newElement = (elements: JSX.Element[]) => void
+
 export default function Shell() {
 	if (terminal_window) {
-		const [existingPrompts, setPrompt] = useState([display_prompt()])
-		keyboard_event(terminal_window, existingPrompts, setPrompt)
+		const [renderedElements, renderElement] = useState([display_prompt()])
+		const new_element_f = (elements: JSX.Element[]) => renderElement([...renderedElements, ...elements])
 
-		return existingPrompts.map((ps1, k) => <div className="shell-prompt" key={k}>{ps1}</div>)
+		keyboard_events(terminal_window, new_element_f)
+
+		return renderedElements.map((element, k) => <React.Fragment key={k}>{element}</React.Fragment>)
 	}
 	return panic("The <main> element is missing")
 }
 
-export { panic }
+export {
+	panic,
+	type newElement,
+}

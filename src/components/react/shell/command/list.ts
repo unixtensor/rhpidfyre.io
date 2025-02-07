@@ -1,21 +1,26 @@
-import { working_dir } from "../../fs"
+import { working_dir } from "../fs"
 
-function ls() {
+type args = string[]
+
+function ls(args: args) {
+	console.log(args)
+}
+
+function pwd(args: args) {
 
 }
 
-function pwd() {
+function cat(args: args) {
 
 }
 
-function cat() {
-
+interface commands_list {
+	[index: string]: (args: args) => void
 }
-
-const commands = {
+const commands: commands_list = {
 	["ls"]: ls,
 	["pwd"]: pwd,
 	["cat"]: cat,
 }
 
-export { commands }
+export default commands
