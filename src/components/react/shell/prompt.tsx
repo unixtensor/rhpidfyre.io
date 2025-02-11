@@ -1,4 +1,4 @@
-import { get_working_dir_name_full } from "./fs/fn"
+import { get_working_dir_name } from "./fs/fn"
 import { cyan, green } from "./color"
 
 const userAgent = navigator.userAgent
@@ -10,7 +10,7 @@ if (browser_name_fallible) {
 }
 
 function working_dir() {
-	const name = get_working_dir_name_full()
+	const name = get_working_dir_name()
 	return name === "user" ? "~" : name
 }
 

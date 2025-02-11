@@ -1,10 +1,9 @@
 import type { JSX } from "react"
-import { Entry } from "../fs/fs"
-import { blue } from "../color"
-import { set_working_dir } from "../fs/fn"
+import { bold } from "../color"
+import { get_working_dir_name_full, set_working_dir, SetDirStatus } from "../fs/fn"
 
 type args = string[]
-type command = JSX.Element | undefined
+type command = JSX.Element | boolean
 
 function parse_ls(entries: JSX.Element[]) {
 	return <div className="horizontal-display">
@@ -13,7 +12,14 @@ function parse_ls(entries: JSX.Element[]) {
 }
 
 function cd(args: args): command {
-	set_working_dir(args[1])
+	const new_dir_status = set_working_dir(args[1])
+
+	if (new_dir_status === SetDirStatus.NotADirectory) {
+		return <p>{"cd: \""}{bold(args[1])}{"\" is not a directory"}</p>
+	} else if (new_dir_status === SetDirStatus.NotFound) {
+		return <p>{"cd: The directory \""}{bold(args[1])}{"\" does not exist"}</p>
+	}
+	return true
 }
 
 function ls(args: args): command {
@@ -23,16 +29,15 @@ function ls(args: args): command {
 	// 	}
 	// 	return <p>{`${working_dir}`}</p>
 	// }
+	return true
 }
 
 function pwd(args: args): command {
-	const tree: string[] = []
-
-	return <p>{`${tree.join("/")}`}</p>
+	return <p>{`${get_working_dir_name_full()}`}</p>
 }
 
 function cat(args: args): command {
-	return
+	return true
 }
 
 interface commands_list {
