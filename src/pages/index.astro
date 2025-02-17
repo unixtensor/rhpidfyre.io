@@ -1,13 +1,12 @@
 ---
 import Webpage from '../layouts/Webpage.astro';
 import Motd from '../components/terminal/motd.astro';
-import Terminal from '../components/react/terminal/exec';
 ---
 
 <Webpage>
 	<main>
 		<Motd/>
-		<Terminal client:only="react"/>
+		<script src="../components/client/terminal/exec.ts"></script>
 	</main>
 </Webpage>
 
