@@ -1,7 +1,7 @@
-FROM oven/bun
+FROM oven/bun AS build
 
-COPY package.json .
-COPY astro.config.mjs .
-COPY src/ .
-COPY public/ .
+COPY package.json astro.config.mjs /tmp/
+COPY src public /tmp/
+
+RUN bun run build
 
