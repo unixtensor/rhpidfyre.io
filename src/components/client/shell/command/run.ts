@@ -1,37 +1,37 @@
-import type { JSX } from "react";
-import commands from "./list";
 import { bold } from "../color";
+import { to_args, trim } from "./parse";
 
-function trim(stdin: string): string {
-	const trimmed_str: string[] = []
-	stdin.split(" ").forEach(s => { if (s !== "") { trimmed_str.push(s) } })
-	return trimmed_str.join(" ")
-}
+import commands, { type Command } from "./list";
+import create from "../../elements/create";
+import history from "../history";
 
-function to_args(trimmed_str: string): string[] {
-	return trimmed_str.split(" ")
-}
+type Term = HTMLElement
 
-function valid_command(args: string[]): JSX.Element | undefined {
+function valid_command(term: Term, args: string[]) {
 	for (const command_in_list in commands) {
 		const command = args[0]
 		if (command === command_in_list) {
-			return commands[command_in_list](args)
+			return (commands[command_in_list] as Command)(term, args)
 		}
 	}
 	return
 }
 
 function unknown_command(cmd_name: string) {
-	return <p>{"shell: Unknown command: "}{bold(cmd_name)}</p>
+	const unknown_element = create("p")
+	unknown_element.innerText = "shell: Unknown command: "
+	unknown_element.appendChild(bold(cmd_name))
+	return unknown_element
 }
 
-export default function run(stdin: string) {
+export default function run(term: Term, stdin: string) {
 	const args = to_args(trim(stdin))
-	const command = valid_command(args)
+	const valid = valid_command(term, args)
+	const command = args[0] as string
 
-	if (args[0] !== "" && !command) {
-		return unknown_command(args[0])
+	if (command !== "" && !valid) {
+		return unknown_command(command)
 	}
-	return command ? command : <></>
+	history.add(args.join(" "))
+	return false
 }

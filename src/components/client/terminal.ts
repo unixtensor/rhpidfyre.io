@@ -1,42 +1,91 @@
-// import { red } from "../shell/color"
-// import { display_prompt, keyboard_events } from "../shell/events"
+import { history_list } from "./shell/history"
 
 import prompt from "./elements/prompt"
-// import run from "./shell/command/run"
+import run from "./shell/command/run"
 
-const terminal_window = document.querySelector("main")
+let history_index = 0
 
+const term_win_unsafe = document.querySelector("main")
 const enum Key {
-	Enter     = "Enter",
-	ArrowUp   = "ArrowUp",
-	ArrowDown = "ArrowDown",
-	Tab       = "Tab"
-}
-
-function spawnps1(terminal_window_safe: HTMLElement) {
-	const ps1prompt = prompt()
-	terminal_window_safe.appendChild(ps1prompt.body)
-	input_processor(ps1prompt.input)
+	Enter      = "Enter",
+	ArrowRight = "ArrowRight",
+	ArrowUp    = "ArrowUp",
+	ArrowDown  = "ArrowDown",
+	Tab        = "Tab"
 }
 
 type InputClosure = (key_event: KeyboardEvent) => void
-function key_enter(ps1input: HTMLInputElement, key_event: KeyboardEvent, input_closure: InputClosure) {
-	key_event.preventDefault()
-	// run(ps1input.value)
-	ps1input.removeEventListener("keydown", input_closure)
+interface EnterArgs {
+	readonly term_win_safe: HTMLElement,
+	readonly ps1input: HTMLInputElement,
+	readonly closure: InputClosure
+}
+function key_enter(input: EnterArgs) {
+	const unknown_command_msg = run(input.term_win_safe, input.ps1input.value)
+
+	if (unknown_command_msg) {
+		input.term_win_safe.appendChild(unknown_command_msg)
+	}
+	input.ps1input.removeEventListener("keydown", input.closure)
+	spawnps1(input.term_win_safe)
 }
 
-function input_processor(ps1input: HTMLInputElement) {
-	const input_closure = (key_event: KeyboardEvent) => {
-		if (key_event.key === Key.Enter) {
-			key_enter(ps1input, key_event, input_closure)
+function key_up_arrow(ps1input: HTMLInputElement) {
+	const history_item = history_list[history_index]
+	if (history_item) {
+		ps1input.value = history_item
+		history_index+=1
+	}
+}
+
+function key_down_arrow(ps1input: HTMLInputElement) {
+	const history_item = history_list[history_index]
+	if (history_item) {
+		history_index-=1
+		if (history_index === -1) {
+			history_index = 0
+		} else {
+			ps1input.value = history_item
 		}
 	}
-	ps1input.addEventListener("keydown", input_closure)
 }
 
-if (terminal_window) {
-	spawnps1(terminal_window)
+function spawnps1(term_win_safe: HTMLElement) {
+	const ps1prompt = prompt()
+	term_win_safe.appendChild(ps1prompt.body)
+	bind_processor(term_win_safe, ps1prompt.input)
+	history_index = 0
+	ps1prompt.input.focus()
+}
+
+function bind_processor(term_win_safe: HTMLElement, ps1prompt_input: HTMLInputElement) {
+	const input_closure = (key_event: KeyboardEvent) => {
+		if (key_event.key === Key.Enter) {
+			key_event.preventDefault()
+			key_enter({
+				term_win_safe: term_win_safe,
+				ps1input: ps1prompt_input,
+				closure: input_closure
+			})
+		} else if (key_event.key === Key.Tab) {
+			key_event.preventDefault()
+
+		} else if (key_event.key === Key.ArrowRight) {
+			key_event.preventDefault()
+
+		} else if (key_event.key === Key.ArrowUp) {
+			key_event.preventDefault()
+			key_up_arrow(ps1prompt_input)
+		} else if (key_event.key === Key.ArrowDown) {
+			key_event.preventDefault()
+			key_down_arrow(ps1prompt_input)
+		}
+	}
+	ps1prompt_input.addEventListener("keydown", input_closure)
+}
+
+if (term_win_unsafe) {
+	spawnps1(term_win_unsafe)
 } else {
 
 }

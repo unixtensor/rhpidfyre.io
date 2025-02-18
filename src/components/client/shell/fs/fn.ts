@@ -2,7 +2,7 @@ import { Entry, EntryType, fs, type FsEntrySignature } from "./fs"
 
 let working_dir = ["/", "home", "user"]
 
-function get_working_dir_name(): string {
+function get_working_dir_name() {
 	return working_dir[working_dir.length-1]
 }
 
@@ -29,7 +29,7 @@ function iter_fs_to_goal(w_dir_clone: string[]): FsIterEntry {
 
 	for (const w_dir of w_dir_clone) {
 		if (w_dir === "/") { continue }
-		if (next_iter.inner) {
+		if (next_iter && next_iter.inner) {
 			const found = next_iter.inner.find(entry => entry.name === w_dir)
 
 			if (!found) {
