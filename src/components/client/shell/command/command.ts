@@ -35,3 +35,5 @@ export default function run(term: Term, stdin: string) {
 	history.add(args.join(" "))
 	return false
 }
+
+export { unknown_command }

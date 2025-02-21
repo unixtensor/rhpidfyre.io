@@ -1,4 +1,4 @@
-import run from "./shell/command/run"
+import run from "./shell/command/command"
 import history from "./shell/history"
 
 type InputClosure = (key_event: KeyboardEvent) => void
