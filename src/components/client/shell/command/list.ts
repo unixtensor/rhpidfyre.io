@@ -1,16 +1,11 @@
-import { bold } from "../color"
 import { get_working_dir_name_full, set_working_dir, SetDirStatus } from "../fs/fn"
 
 import create from "../../elements/create"
+import history_cmd from "./history"
+import stdout from "../../elements/stdout"
 
 type Term = HTMLElement
 type Args = string[]
-
-function strout(term: Term, s: string) {
-	const p = create("p")
-	p.innerText = s
-	term.appendChild(p)
-}
 
 function clear(term: Term, args: Args): boolean {
 	Array.from(term.children).forEach(node => {
@@ -52,7 +47,7 @@ function ls(term: Term, args: Args): boolean {
 }
 
 function pwd(term: Term, args: Args): boolean {
-	strout(term, get_working_dir_name_full())
+	term.appendChild(stdout(get_working_dir_name_full()))
 	return true
 }
 
@@ -70,7 +65,12 @@ const commands: CommandsList = {
 	["ls"]: ls,
 	["pwd"]: pwd,
 	["cat"]: cat,
+	["history"]: history_cmd,
 }
 
 export default commands
-export { type Command }
+export {
+	type Command,
+	type Term,
+	type Args
+}

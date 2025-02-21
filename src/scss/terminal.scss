@@ -9,7 +9,17 @@
 	.bold { font-weight: bold; }
 }
 
+@mixin stdout-layouts {
+	.stdout-vertical { display: grid; }
+	.stdout-horizontal {
+		display: flex;
+		gap: 30px;
+	}
+}
+
 @mixin formatting {
+	@include stdout-layouts;
+
 	.return { margin-top: 25px; }
 	.shell-prompt { display: flex; }
 
