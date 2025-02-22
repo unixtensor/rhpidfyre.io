@@ -14,6 +14,10 @@ import Motd from '../components/terminal/motd.astro';
 	@use "../scss/variables";
 	@use "../scss/terminal";
 
+	::spelling-error {
+		text-decoration: none
+	}
+
 	main {
 		@include terminal.formatting;
 
