@@ -1,0 +1,10 @@
+@mixin styling {
+	display: flex;
+	justify-content: space-between;
+	width: 100vw;
+	height: variables.$header-Y;
+	background-color: rgb(10,10,10);
+
+	p { margin-left: 10px; }
+	section { height: 100%; }
+}

@@ -17,11 +17,14 @@
 	}
 }
 
-@mixin formatting {
-	@include stdout-layouts;
-
+@mixin term-elements {
 	.return { margin-top: 25px; }
 	.shell-prompt { display: flex; }
+}
+
+@mixin formatting {
+	@include stdout-layouts;
+	@include term-elements;
 
 	p {
 		@include color-matrix;

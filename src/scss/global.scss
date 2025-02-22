@@ -1,0 +1,44 @@
+@forward "./font.scss";
+
+@use "./elements/header.scss";
+@use "./elements/main.scss";
+@use "./elements/footer.scss";
+
+$header-Y: 30px;
+$footer-Y: 30px;
+$component-padding: 20px;
+
+:root {
+	color-scheme: dark;
+
+	--body-background-color: rgb(0,0,0);
+	--hf-button-hover-color: rgb(255,255,255);
+}
+::selection {
+	background-color: rgb(255,255,255);
+	color: rgb(0,0,0);
+}
+::spelling-error {
+	text-decoration: none
+}
+
+body {
+	box-sizing: border-box;
+	margin: 0;
+	overflow: hidden;
+	background-color: var(--body-background-color);
+}
+button {
+	background-color: transparent;
+	border: 0;
+}
+a {
+	color: white;
+	cursor:	unset;
+
+	&:hover, &:active, &:link { text-decoration: none; }
+}
+
+header { @include header.styling; }
+main   { @include main.styling; }
+footer { @include footer.styling; }
