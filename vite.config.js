@@ -6,4 +6,7 @@ export default defineConfig({
 		minify: true
 	})],
 	root: "src",
+	build: {
+		outDir: "../dist"
+	}
 })
