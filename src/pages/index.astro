@@ -11,30 +11,5 @@ import Motd from '../components/terminal/motd.astro';
 </Webpage>
 
 <style lang="scss" is:global>
-	@use "../scss/variables";
-	@use "../scss/terminal";
 
-	::spelling-error {
-		text-decoration: none
-	}
-
-	main {
-		@include terminal.formatting;
-
-		width: 100vw;
-		height: calc(99.3vh - variables.$header-Y - variables.$footer-Y);
-		padding: 5px;
-		overflow-y: auto;
-	}
-	input {
-		font-size: 1.2rem;
-		background-color: transparent;
-		border: 0;
-		outline: 0;
-		width: 90%;
-		/* Pester me when this gets undrafted */
-		caret-shape: block;
-
-		&:disabled { color: white }
-	}
 </style>

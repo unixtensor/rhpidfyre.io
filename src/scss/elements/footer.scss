@@ -1,0 +1,27 @@
+@use "../variables.scss";
+
+@mixin styling {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100vw;
+	height: variables.$footer-Y;
+	background-color: var(--body-background-color)
+
+	p { padding: 0 20px 0 20px; }
+	section {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 100%;
+
+		button {
+			height: 100%;
+			padding: 0 20px 0 20px;
+
+			&:hover { background-color: var(--hf-button-hover-color) }
+		}
+	}
+
+	#toggle-term-mode { background-color: rgb(0,50,90) }
+}

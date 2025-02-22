@@ -1,12 +1,9 @@
 @forward "./font.scss";
 
+@use "./variables.scss";
 @use "./elements/header.scss";
 @use "./elements/main.scss";
 @use "./elements/footer.scss";
-
-$header-Y: 30px;
-$footer-Y: 30px;
-$component-padding: 20px;
 
 :root {
 	color-scheme: dark;

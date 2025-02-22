@@ -1,4 +1,5 @@
 @use "./terminal";
+@use "../variables.scss";
 
 @mixin input {
 	font-size: 1.2rem;
@@ -16,7 +17,7 @@
 	@include terminal.formatting;
 
 	width: 100vw;
-	height: calc(99.3vh - $header-Y - $footer-Y);
+	height: calc(99.3vh - variables.$header-Y - variables.$footer-Y);
 	padding: 5px;
 	overflow-y: auto;
 
