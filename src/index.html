@@ -4,11 +4,8 @@
 		<meta charset="UTF-8"/>
 		<meta name="viewport" content="width=device-width"/>
 		<link rel="icon" type="image/png" href="/logo.png"/>
+		<link rel="stylesheet" href="./scss/global.scss"/>
 		<title>rhpidfyre.io</title>
-		<style lang="scss">
-			@forward "../scss/global";
-		</style>
-		<script src="../rt/terminal.ts"></script>
 	</head>
 	<body>
 		<header>
@@ -26,8 +23,8 @@
 			<p>You can find my services here or learn about me.</p>
 			<div class="return"></div>
 			<p>You can also contribute or view the source code of my website via the links:</p>
-			<p>{"<"}<a href="https://git.rhpidfyre.io/rhpidfyre/rhpidfyre.io" target="_blank">https://git.rhpidfyre.io/rhpidfyre/rhpidfyre.io</a>{">."}</p>
-			<p>{"<"}<a href="https://github.com/unixtensor/rhpidfyre.io" target="_blank">https://github.com/unixtensor/rhpidfyre.io</a>{">."}</p>
+			<p>&lt;<a href="https://git.rhpidfyre.io/rhpidfyre/rhpidfyre.io" target="_blank">https://git.rhpidfyre.io/rhpidfyre/rhpidfyre.io</a>&gt;.</p>
+			<p>&lt;<a href="https://github.com/unixtensor/rhpidfyre.io" target="_blank">https://github.com/unixtensor/rhpidfyre.io</a>&gt;.</p>
 			<div class="return"></div>
 			<p>You can get started with the command: <span class="bold">help</span></p>
 			<div class="return"></div>
@@ -51,5 +48,6 @@
 				</style>
 			</noscript>
 		</footer>
+		<script type="module" src="./rt/terminal.ts"></script>
 	</body>
 </html>
