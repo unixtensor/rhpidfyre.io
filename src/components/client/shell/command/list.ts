@@ -1,7 +1,6 @@
 import { get_working_dir_name_full, set_working_dir, SetDirStatus } from "../fs/fn"
 
-import create from "../../elements/create"
-import history_cmd from "./history"
+import history_cmd from "./builtin/history"
 import stdout from "../../elements/stdout"
 
 type Term = HTMLElement

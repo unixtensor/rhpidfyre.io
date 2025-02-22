@@ -2,8 +2,8 @@ import { bold } from "../color";
 import { to_args, trim } from "./parse";
 
 import commands, { type Command } from "./list";
-import create from "../../elements/create";
 import history from "../history";
+import stdout from "../../elements/stdout";
 
 type Term = HTMLElement
 
@@ -18,8 +18,7 @@ function valid_command(term: Term, args: string[]) {
 }
 
 function unknown_command(cmd_name: string) {
-	const unknown_element = create("p")
-	unknown_element.innerText = "shell: Unknown command: "
+	const unknown_element = stdout("shell: Unknown command: ")
 	unknown_element.appendChild(bold(cmd_name))
 	return unknown_element
 }
