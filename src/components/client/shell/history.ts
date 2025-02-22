@@ -4,9 +4,9 @@ interface HistoryFile {
 	cursor_reset: () => void
 }
 interface History {
-	file:       HistoryFile
-	add:        (cmd: string) => void,
-	index_up:   (ps1input: HTMLInputElement) => void,
+	file: HistoryFile
+	add: (cmd: string) => void,
+	index_up: (ps1input: HTMLInputElement) => void,
 	index_down: (ps1input: HTMLInputElement) => void
 }
 
@@ -36,7 +36,7 @@ history.index_down = function(ps1input: HTMLInputElement) {
 	if (this.file.cursor!==0) {
 		this.file.cursor-=1
 		if (this.file.cursor!==0) {
-			const item = this.file.inner[this.file.cursor]
+			const item = this.file.inner[this.file.cursor-1]
 			if (item) { ps1input.value = item }
 		} else {
 			this.file.cursor_reset()

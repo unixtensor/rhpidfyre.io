@@ -8,8 +8,8 @@ interface EnterArgs {
 	readonly closure: InputClosure
 }
 interface Keys {
-	enter:      (input: EnterArgs) => void,
-	up_arrow:   (ps1input: HTMLInputElement) => void,
+	enter: (input: EnterArgs) => void,
+	up_arrow: (ps1input: HTMLInputElement) => void,
 	down_arrow: (ps1input: HTMLInputElement) => void,
 }
 

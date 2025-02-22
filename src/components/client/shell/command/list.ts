@@ -1,4 +1,4 @@
-import history_cmd from "./builtin/history"
+import history from "./builtin/history"
 import clear from "./builtin/clear"
 import pwd from "./builtin/pwd"
 import cat from "./builtin/cat"
@@ -8,12 +8,13 @@ import ls from "./builtin/ls"
 type Term = HTMLElement
 type Args = string[]
 type Command = (term: Term, args: Args) => boolean
+
 interface CommandsList {
 	[index: string]: Command,
 }
 
 const commands: CommandsList = {
-	["history"]: history_cmd,
+	["history"]: history,
 	["clear"]: clear,
 	["pwd"]: pwd,
 	["cat"]: cat,
