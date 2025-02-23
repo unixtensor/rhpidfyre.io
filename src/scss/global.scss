@@ -5,7 +5,10 @@
 @use "./elements/main.scss";
 @use "./elements/footer.scss";
 
-:root { color-scheme: dark; }
+:root {
+	@include variables.css-global;
+	color-scheme: dark;
+}
 ::selection {
 	background-color: rgb(255,255,255);
 	color: rgb(0,0,0);
