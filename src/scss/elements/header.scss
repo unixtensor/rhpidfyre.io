@@ -1,12 +1,32 @@
 @use "../variables.scss";
 
+@mixin navigation {
+	.header-left {
+		height: 100%;
+		padding: 0 20px 0 20px;
+		background-color: rgb(0,0,0);
+	}
+	.header-right {
+		display: flex;
+		height: 100%;
+
+		button {
+			padding: 0 20px 0 20px;
+			&:hover {
+				background-color: white;
+				& > a { color: black; }
+			}
+		}
+	}
+}
+
 @mixin styling {
+	@include navigation;
+
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	width: 100vw;
 	height: variables.$header-Y;
 	background-color: rgb(10,10,10);
-
-	p { margin-left: 10px; }
-	section { height: 100%; }
 }
