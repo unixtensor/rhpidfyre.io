@@ -3,13 +3,6 @@ import { get_working_dir_name } from "../shell/fs/fn"
 
 import create from "./create"
 
-const userAgent = navigator.userAgent
-const browser_name_fallible = userAgent.match(/Firefox.\d+[\d.\d]+|Chrome.\d+[\d.\d]+/gm)?.map(f => f.split("/")[0])
-let browser_name = "unknown"
-if (browser_name_fallible) {
-	browser_name = browser_name_fallible[0] === "Firefox" ? "gecko" : "chromium"
-}
-
 interface Ps1Prompt {
 	readonly body: HTMLDivElement,
 	readonly input: HTMLInputElement
@@ -23,6 +16,24 @@ let inputs: Inputs = {
 	new: undefined
 }
 
+function browser_name_via_useragent(): string {
+	const userAgent = navigator.userAgent
+	const browser_name_fallible = userAgent.match(/Firefox.\d+[\d.\d]+|Chrome.\d+[\d.\d]+/gm)?.map(f => f.split("/")[0])
+
+	if (browser_name_fallible) {
+		const useragent_name = browser_name_fallible[0]
+		if (useragent_name === "Firefox") {
+			return "gecko"
+		} else if (useragent_name === "Chrome") {
+			return "chromium"
+		}/* else if (useragent_name === "AppleWebKit") {
+			return "safari"
+		} */
+	}
+	return "unknown"
+}
+
+const browser_name = browser_name_via_useragent()
 function ps1_element(user: HTMLSpanElement, dir: HTMLSpanElement) {
 	const display = create("p")
 	display.appendChild(user)
