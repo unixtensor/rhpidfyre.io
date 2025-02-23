@@ -1,4 +1,4 @@
-import { Entry, EntryType, fs, type FsEntrySignature } from "./fs"
+import { EntryType, fs, type FsEntrySignature } from "./fs"
 
 let working_dir = ["/", "home", "user"]
 
