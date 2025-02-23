@@ -19,8 +19,8 @@ history.file.cursor_reset = function() {
 }
 
 history.add = function(cmd: string) {
-	if (this.file.inner[this.file.inner.length-1] !== cmd) {
-		this.file.inner.push(cmd)
+	if (this.file.inner[0] !== cmd) {
+		this.file.inner.unshift(cmd)
 	}
 }
 
