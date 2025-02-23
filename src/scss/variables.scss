@@ -2,13 +2,13 @@ $header-Y: 30px;
 $footer-Y: 30px;
 $component-padding: 20px;
 
-@mixin text-colors {
-	--text-red:   rgb(200, 0, 0);
-	--text-green: rgb(0, 200, 0);
-	--text-blue:  rgb(0, 0, 200);
-	--text-cyan:  rgb(18,167,148);
+@mixin color-matrix {
+	--color-red:   200, 0, 0;
+	--color-green: 0, 200, 0;
+	--color-blue:  0, 0, 200;
+	--color-cyan:  18,167,148;
 }
 
 @mixin css-global {
-	@include text-colors;
+	@include color-matrix;
 }

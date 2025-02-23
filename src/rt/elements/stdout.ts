@@ -1,18 +1,29 @@
 import { bold } from "../shell/color";
+import { horizontal, vertical } from "./layout";
 
 import create from "./create";
+import wrapindicator from "./wrapindicator";
 
-function stdout_grid(left: string[], right: string[]) {
-	const root = create("div", "stdout-horizontal")
-	const container_left = create("div", "stdout-vertical")
-	const container_right = create("div", "stdout-vertical")
+function stdout_grid<T extends HTMLElement>(left: string[], right: string[], header?: T) {
+	const wrap_indicator = wrapindicator()
+	const container_left = vertical()
+	const container_right = vertical()
 
-	left.forEach(str => container_left.appendChild(stdout_bold(str)))
-	right.forEach(str => container_right.appendChild(stdout(str)))
+	container_left.append(...left.map(str => stdout_bold(str)))
+	container_right.append(...right.map(str => stdout(str)))
 
-	root.appendChild(container_left)
-	root.appendChild(container_right)
-	return root
+	if (header) {
+		const container_right_header = vertical()
+		const help_container = horizontal()
+		help_container.append(container_left, container_right)
+		container_right_header.append(header, help_container)
+		wrap_indicator.appendChild(container_right_header)
+	} else {
+		const container = horizontal()
+		container.append(container_left, container_right)
+		wrap_indicator.appendChild(container)
+	}
+	return wrap_indicator
 }
 
 function stdout_horizontal(strs: string[]) {

@@ -11,20 +11,21 @@ interface SubCommands {
 	[index: string]: SubCommandAction,
 }
 
+function subcommand_help(data: SubCommands, cmd_description: string, term: Term) {
+	const subcmd_descriptions: string[] = []
+	Object.values(data).forEach(sub_cmd => subcmd_descriptions.push(sub_cmd.description))
+
+	term.appendChild(stdout_grid(Object.keys(data), subcmd_descriptions, stdout(cmd_description)))
+}
+
 const SubCommand = class {
 	public data: SubCommands //data? less goo!
 
-	constructor(description: string) {
+	constructor(cmd_description: string) {
 		this.data = {}
 		this.data.help = {} as SubCommandAction
 		this.data.help.description = "Display help info"
-		this.data.help.inner = (term: Term, _args: Args) => {
-			const descriptions: string[] = []
-			Object.values(this.data).forEach(sub_cmd => descriptions.push(sub_cmd.description))
-
-			term.appendChild(stdout(description))
-			term.appendChild(stdout_grid(Object.keys(this.data), descriptions))
-		}
+		this.data.help.inner = (term: Term, _args: Args) => subcommand_help(this.data, cmd_description, term)
 	}
 
 	public process(term: Term, args: Args) {

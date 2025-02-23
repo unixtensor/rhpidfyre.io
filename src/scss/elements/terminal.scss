@@ -1,8 +1,8 @@
 @mixin text-styles {
-	.red   { color: var(--text-red) }
-	.green { color: var(--text-green) }
-	.blue  { color: var(--text-blue) }
-	.cyan  { color: var(--text-cyan) }
+	.red   { color: rgb(var(--color-red)) }
+	.green { color: rgb(var(--color-green)) }
+	.blue  { color: rgb(var(--color-blue)) }
+	.cyan  { color: rgb(var(--color-cyan)) }
 	.bold  { font-weight: bold; }
 }
 
@@ -12,11 +12,19 @@
 		display: flex;
 		gap: 30px;
 	}
+	.stdout-horizontal-wrap {
+		display: flex;
+		gap: 5px;
+	}
 }
 
 @mixin term-elements {
 	.return { margin-top: 25px; }
 	.shell-prompt { display: flex; }
+	.wrap-indicator {
+		width: 2px;
+		background-color: rgba(var(--color-blue), .3);
+	}
 }
 
 @mixin formatting {

@@ -1,5 +1,15 @@
 @use "../variables.scss";
 
+@mixin navigation-button {
+	button {
+		padding: 0 20px 0 20px;
+		&:hover {
+			background-color: white;
+			& > a { color: black; }
+		}
+	}
+}
+
 @mixin navigation {
 	.header-left {
 		height: 100%;
@@ -7,16 +17,10 @@
 		background-color: rgb(0,0,0);
 	}
 	.header-right {
+		@include navigation-button;
+
 		display: flex;
 		height: 100%;
-
-		button {
-			padding: 0 20px 0 20px;
-			&:hover {
-				background-color: white;
-				& > a { color: black; }
-			}
-		}
 	}
 }
 
