@@ -1,4 +1,4 @@
-import { set_working_dir, SetDirStatus } from "../../fs/fn"
+import { set_working_dir, SetDirStatus } from "../../fs/library"
 import type { Args, Term } from "../list"
 
 import stdout from "../../../elements/stdout"

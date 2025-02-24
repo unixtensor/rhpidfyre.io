@@ -1,4 +1,4 @@
-import { EntryType, fs, type FsDirectory, type FsEntry } from "./fs"
+import { EntryType, fs, type FsDirectory, type FsEntry } from "./core"
 
 let working_dir = ["/", "home", "user"]
 
