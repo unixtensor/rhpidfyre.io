@@ -7,7 +7,7 @@ import history from "../../history";
 const history_command = new SubCommand("Show and manipulate command history")
 
 history_command.add("show", "Show the history", function(term: Term, _args: Args) {
-	history.file.inner.forEach((entry, ind) => term.appendChild(stdout(`${ind} ${entry}`)))
+	history.file.inner.forEach((entry, ind) => term.appendChild(stdout(`${ind+1} ${entry}`)))
 })
 
 history_command.add("clear", "Delete the entire command history", function(term: Term, _args: Args) {
