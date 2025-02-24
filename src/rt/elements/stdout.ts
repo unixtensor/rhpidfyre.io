@@ -26,6 +26,12 @@ function stdout_grid<T extends HTMLElement>(left: string[], right: string[], hea
 	return wrap_indicator
 }
 
+function stdout_horizontal_elements<T extends HTMLElement>(elements: T[]) {
+	const h_elements_out = horizontal()
+	h_elements_out.append(...elements)
+	return h_elements_out
+}
+
 function stdout_horizontal(strs: string[]) {
 	const p = create("p")
 	strs.forEach((str, i) => {
@@ -48,7 +54,8 @@ export default function stdout(str: string) {
 }
 
 export {
-	stdout_grid,
+	stdout_horizontal_elements,
 	stdout_horizontal,
+	stdout_grid,
 	stdout_bold
 }

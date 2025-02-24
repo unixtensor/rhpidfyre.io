@@ -1,3 +1,5 @@
+@use "../variables.scss";
+
 @mixin text-styles {
 	.red   { color: rgb(var(--color-red)) }
 	.green { color: rgb(var(--color-green)) }
@@ -30,17 +32,13 @@
 @mixin formatting {
 	@include stdout-layouts;
 	@include term-elements;
+	@include text-styles;
 
+	p, a, span {
+		font-size: variables.$default-font-size
+	}
 	p {
-		@include text-styles;
-
-		font-size: 1.2rem;
 		margin: 5px;
-
-		span { font-size: inherit; }
-		a {
-			font-size: inherit;
-			&:hover { text-decoration: underline; }
-		}
+		a:hover { text-decoration: underline; }
 	}
 }

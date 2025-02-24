@@ -1,4 +1,4 @@
-import { EntryType, fs, type FsEntrySignature } from "./fs"
+import { EntryType, fs, type FsDirectory, type FsEntry } from "./fs"
 
 let working_dir = ["/", "home", "user"]
 
@@ -21,7 +21,7 @@ const enum SetDirStatus {
 	NotADirectory
 }
 interface FsIterEntry {
-	readonly entry: FsEntrySignature | null,
+	readonly entry: FsDirectory | null,
 	readonly status: SetDirStatus
 }
 function iter_fs_to_goal(w_dir_clone: string[]): FsIterEntry {
@@ -41,7 +41,7 @@ function iter_fs_to_goal(w_dir_clone: string[]): FsIterEntry {
 			if (found.name === w_dir_clone[w_dir_clone.length-1]) {
 				return { entry: next_iter, status: SetDirStatus.Valid }
 			} else {
-				next_iter = found.inner as FsEntrySignature
+				next_iter = found.inner as FsDirectory
 			}
 		}
 	}
@@ -61,15 +61,21 @@ function set_working_dir(name: string): SetDirStatus {
 	return iter_status.status
 }
 
-function working_dir_entries() {
+function get_working_dir_entries(): FsEntry[] {
+	const entries: FsEntry[] = []
 	const w_dir_clone = [...working_dir]
 	const iter_status = iter_fs_to_goal(w_dir_clone)
 
+	if (iter_status.entry && iter_status.entry.inner) {
+		iter_status.entry.inner.forEach(dir => entries.push(dir))
+	}
+	return entries
 }
 
 export {
 	get_working_dir_name,
 	get_working_dir_name_full,
+	get_working_dir_entries,
 	set_working_dir,
 	SetDirStatus
 }

@@ -8,7 +8,8 @@ const enum Permissions {
 	rw
 }
 
-type FsEntrySignature = Entry<Entry<{}>[]> //I did this!
+type FsEntry = Entry<{}>
+type FsDirectory = Entry<FsEntry[]>
 
 const user = [
 	Entry("about_me.txt", "about me inside", Permissions.rw),
@@ -44,7 +45,8 @@ function Entry<T = File>(name: string, inner: T, permissions: Permissions): Entr
 
 export {
 	fs,
-	type FsEntrySignature,
+	type FsDirectory,
+	type FsEntry,
 	EntryType,
 	Permissions,
 	Entry
