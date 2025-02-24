@@ -5,7 +5,7 @@ WORKDIR /rhpidfyre.io
 COPY src package.json vite.config.js tsconfig.json ./
 
 RUN bun run install
-RUN bun run build
+RUN bun run build --emptyOutDir
 
 FROM joseluisq/static-web-server
 
