@@ -8,8 +8,9 @@ const enum Permissions {
 	rw
 }
 
+type FsList = FsEntry[]
 type FsEntry = Entry<{}>
-type FsDirectory = Entry<FsEntry[]>
+type FsDirectory = Entry<FsList>
 
 type File = string
 interface Entry<T = File> {
@@ -30,6 +31,7 @@ function Entry<T = File>(name: string, inner: T, permissions: Permissions): Entr
 export {
 	type FsDirectory,
 	type FsEntry,
+	type FsList,
 	EntryType,
 	Permissions,
 	Entry

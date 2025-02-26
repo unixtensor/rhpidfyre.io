@@ -48,14 +48,16 @@ search.binary_nsort = function(list, find, start = 0, end = list.length-1) {
 }
 
 search.binary_fs = function(cloned_list, file_name) {
-	cloned_list.sort()
+	cloned_list.sort((a,z) => a.name.localeCompare(z.name))
 	let start = 0
 	let end = cloned_list.length-1
 	while (start<=end) {
 		const median = (start+end)>>1
-		if (cloned_list[median].name === file_name) {
+		const median_name = cloned_list[median].name
+
+		if (median_name === file_name) {
 			return wrap_result(cloned_list[median], median)
-		} else if (cloned_list[median].name !== file_name) {
+		} else if (median_name<file_name) {
 			start = median+1
 		} else {
 			end = median-1

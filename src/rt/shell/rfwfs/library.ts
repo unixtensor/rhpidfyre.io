@@ -1,13 +1,19 @@
-import { EntryType, fs, type FsDirectory, type FsEntry } from "./core"
+import { type FsDirectory, type FsEntry } from "./core"
 
-let working_dir = ["/", "home", "user"]
+import fstree from "./tree"
+import index from "./index"
+
+let cached_dir = fstree[0] //start at root
+let working_path = ["/", "home", "user"]
+
+const clone_working_path = () => [...working_path]
 
 function get_working_dir_name() {
-	return working_dir[working_dir.length-1]
+	return working_path[working_path.length-1]
 }
 
 function get_working_dir_name_full(): string {
-	const w_dir_clone = [...working_dir]
+	const w_dir_clone = clone_working_path()
 	const root = w_dir_clone.shift()
 	if (root) {
 		return root+w_dir_clone.join("/")
@@ -18,32 +24,36 @@ function get_working_dir_name_full(): string {
 const enum SetDirStatus {
 	Valid,
 	NotFound,
-	NotADirectory
+	NotADirectory,
+	Invalid
 }
 interface FsIterEntry {
 	readonly entry: FsDirectory | null,
 	readonly status: SetDirStatus
 }
-function iter_fs_to_goal(w_dir_clone: string[]): FsIterEntry {
-	let next_iter = fs[0]
+function find_fs_dir(working_dir_path_clone: string[], find_dir_name: string): FsIterEntry {
+	let cached_dir_clone = cached_dir.inner
 
-	for (const w_dir of w_dir_clone) {
-		if (w_dir === "/") { continue }
-		if (next_iter && next_iter.inner) {
-			const found = next_iter.inner.find(entry => entry.name === w_dir)
+	for (let path_i = 0; path_i<working_dir_path_clone.length; path_i++) {
+		if (cached_dir_clone) {
+			let cached_dir_file_names: string[] = []
+			cached_dir_clone.forEach((file, file_i) => cached_dir_file_names.push(file.name))
 
-			if (!found) {
-				return { entry: null, status: SetDirStatus.NotFound }
-			}
-			if (found.type !== EntryType.Directory) {
-				return { entry: null, status: SetDirStatus.NotADirectory }
-			}
-			if (found.name === w_dir_clone[w_dir_clone.length-1]) {
-				return { entry: next_iter, status: SetDirStatus.Valid }
-			} else {
-				next_iter = found.inner as FsDirectory
+			const search_result = index.binary(cached_dir_clone, fstree[0])
+
+			if (working_dir_path_clone[path_i] === find_dir_name) {
+				cached_dir_clone = cached_dir_clone
+				if (path_i === working_dir_path_clone.length) {
+					const search_result = index.binary(cached_dir_file_names, find_dir_name)
+					if (search_result) {
+
+					}
+				} else {
+					continue
+				}
 			}
 		}
+		return { entry: null, status: SetDirStatus.Invalid }
 	}
 	return { entry: null, status: SetDirStatus.NotFound }
 }
@@ -51,25 +61,19 @@ function iter_fs_to_goal(w_dir_clone: string[]): FsIterEntry {
 function set_working_dir(name: string): SetDirStatus {
 	if (name === ".") { return SetDirStatus.Valid }
 
-	const w_dir_clone = [...working_dir]
-	if (name === "..") { w_dir_clone.pop() } else { w_dir_clone.push(name) }
+	const w_dir_clone = clone_working_path()
+	if (name === "..") {
+		w_dir_clone.pop()
 
-	const iter_status = iter_fs_to_goal(w_dir_clone)
-	if (iter_status.status === SetDirStatus.Valid) {
-		working_dir = w_dir_clone
+	} else {
+		w_dir_clone.push(name)
 	}
-	return iter_status.status
+
+
 }
 
 function get_working_dir_entries(): FsEntry[] {
-	const entries: FsEntry[] = []
-	const w_dir_clone = [...working_dir]
-	const iter_status = iter_fs_to_goal(w_dir_clone)
 
-	if (iter_status.entry && iter_status.entry.inner) {
-		iter_status.entry.inner.forEach(dir => entries.push(dir))
-	}
-	return entries
 }
 
 export {
