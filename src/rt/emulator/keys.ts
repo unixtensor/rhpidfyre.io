@@ -1,5 +1,5 @@
-import run from "./shell/command/command"
-import history from "./shell/history"
+import run from "../shell/command/command"
+import history from "../shell/history"
 
 type InputClosure = (key_event: KeyboardEvent) => void
 interface EnterArgs {

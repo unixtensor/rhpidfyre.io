@@ -1,5 +1,5 @@
-import history from "./shell/history"
-import prompt from "./elements/prompt"
+import history from "../shell/history"
+import prompt from "../elements/prompt"
 import keys from "./keys"
 
 const term_win_unsafe = document.querySelector("main")
