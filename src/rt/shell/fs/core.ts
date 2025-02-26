@@ -11,22 +11,6 @@ const enum Permissions {
 type FsEntry = Entry<{}>
 type FsDirectory = Entry<FsEntry[]>
 
-const user = [
-	Entry("about_me.txt", "about me inside", Permissions.rw),
-	Entry("services.txt", "services inside", Permissions.rw),
-	Entry("hi", [], Permissions.rw)
-]
-const home = [
-	Entry("user", user, Permissions.rw)
-]
-const root = [
-	Entry("home", home, Permissions.r),
-	Entry("bin", {}, Permissions.r),
-]
-const fs = [
-	Entry("/", root, Permissions.r)
-]
-
 type File = string
 interface Entry<T = File> {
 	readonly inner?: T,
@@ -44,7 +28,6 @@ function Entry<T = File>(name: string, inner: T, permissions: Permissions): Entr
 }
 
 export {
-	fs,
 	type FsDirectory,
 	type FsEntry,
 	EntryType,
