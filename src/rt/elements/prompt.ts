@@ -1,5 +1,5 @@
 import { cyan, green } from "../shell/color"
-import { get_working_dir_name } from "../shell/fs/library"
+import { get_working_dir_name } from "../shell/rfwfs/library"
 
 import create from "./create"
 

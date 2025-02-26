@@ -1,4 +1,4 @@
-import { get_working_dir_name_full } from "../../fs/library";
+import { get_working_dir_name_full } from "../../rfwfs/library";
 import type { Args, Term } from "../list";
 
 import stdout from "../../../elements/stdout";
