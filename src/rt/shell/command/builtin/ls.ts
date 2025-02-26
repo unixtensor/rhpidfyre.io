@@ -1,7 +1,7 @@
 import type { Args, Term } from "../list";
 import { blue } from "../../color";
-import { get_working_dir_entries } from "../../rfwfs/library";
-import { EntryType, FsEntry } from "../../rfwfs/core";
+import { get_working_dir_entries } from "../../../rfwfs/library";
+import { EntryType, FsEntry } from "../../../rfwfs/core";
 
 import stdout, { stdout_horizontal_elements } from "../../../elements/stdout";
 import create from "../../../elements/create";

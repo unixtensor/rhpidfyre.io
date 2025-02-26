@@ -1,4 +1,4 @@
-import { set_working_dir, SetDirStatus } from "../../rfwfs/library"
+import { set_working_dir, SetDirStatus } from "../../../rfwfs/library"
 import type { Args, Term } from "../list"
 
 import stdout from "../../../elements/stdout"
