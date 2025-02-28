@@ -2,7 +2,7 @@ FROM oven/bun AS builder
 
 WORKDIR /rhpidfyre.io
 
-COPY src package.json vite.config.js tsconfig.json ./
+COPY ../packages/web/src ../packages/web/package.json ../packages/web/vite.config.js ../packages/web/tsconfig.json ./
 
 RUN bun run install
 RUN bun run build --emptyOutDir
